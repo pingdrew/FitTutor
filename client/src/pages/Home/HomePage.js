@@ -1,11 +1,11 @@
 import React from "react";
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from "gsap";
-import Nav from "../../components/Front/Nav.js";
-import About from "../../components/Front/About.js";
-import Menu from "../../components/Front/Menu.js";
-import Contact from "../../components/Front/Contact.js";
-import Footer from "../../components/Front/Footer.js";
+import Nav from "../../components/Home/Nav.js";
+import About from "../../components/Home/About.js";
+import Menu from "../../components/Home/Menu.js";
+import Contact from "../../components/Home/Contact.js";
+import Footer from "../../components/Home/Footer.js";
 
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
