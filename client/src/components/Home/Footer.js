@@ -26,6 +26,7 @@ function Footer() {
         </Grid>
       </Grid>
       <Box mt={5}>
+        <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=2spQZ4SzDL2KSe6FKfKihWKCIurWsaNGIGystdpyYiL9yCNEdlfZF0RUWe6C"></script></span>
         <Typography variant="body2" color="text.secondary" align="center">
           {"Copyright © "}
           Sapori D'Italia
@@ -33,7 +34,6 @@ function Footer() {
           {"."}
         </Typography>
       </Box>
-      <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=2spQZ4SzDL2KSe6FKfKihWKCIurWsaNGIGystdpyYiL9yCNEdlfZF0RUWe6C"></script></span>
     </Container>
   );
 }
