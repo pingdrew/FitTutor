@@ -9,10 +9,10 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import HomePage from './pages/Home/HomePage';
-import Login from './pages/Home/HomeLogin';
-import Signup from './pages/Home/HomeSignup';
-// import Signup from './pages/Home/HomeSignup';
-import NoMatch from './pages/Home/NoMatch';
+import Login from './pages/Landing/Login';
+import Signup from './pages/Landing/Signup';
+import NoMatch from './pages/NoMatch';
+import Landing from './pages/Landing/Landing';
 // FRONT END WEBSITE ROUTES ^^
 
 const httpLink = createHttpLink({
@@ -38,29 +38,33 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-          <Routes>
+        <Routes>
 
 
-            {/* FRONTEND WEBSITE ROUTES vv */}
-            <Route
-              path="/"
-              element={<HomePage />}
-            />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
-            <Route
-              path="/signup"
-              element={<Signup />}
-            />
+          {/* FRONTEND WEBSITE ROUTES vv */}
+          <Route
+            path="/"
+            element={<Landing />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/signup"
+            element={<Signup />}
+          />
+          <Route
+            path="/home"
+            element={<HomePage />}
+          />
 
-            {/* 404 ROUTE vv */}
-            <Route
-              path="*"
-              element={<NoMatch />}
-            />
-          </Routes>
+          {/* 404 ROUTE vv */}
+          <Route
+            path="*"
+            element={<NoMatch />}
+          />
+        </Routes>
       </Router>
     </ApolloProvider>
   );
