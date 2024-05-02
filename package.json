@@ -17,6 +17,8 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.1",
+    "graphql": "^16.8.1",
     "heroku": "^8.11.4"
   }
 }
