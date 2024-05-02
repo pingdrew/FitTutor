@@ -1,88 +1,95 @@
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { useMutation } from '@apollo/client';
-// import Auth from '../../utils/auth';
-// import { ADD_USER } from '../../utils/mutations';
+import React, { useState } from 'react';
+import { useMutation, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
-// function Signup(props) {
-//   const [formState, setFormState] = useState({ email: '', password: '' });
-//   const [addUser] = useMutation(ADD_USER);
+const SIGN_UP = gql`
+  mutation signUp($email: String!, $password: String!, $username: String!) {
+    signUp(email: $email, password: $password, username: $username) {
+      token
+    }
+  }
+`;
 
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-//     const mutationResponse = await addUser({
-//       variables: {
-//         email: formState.email,
-//         password: formState.password,
-//         firstName: formState.firstName,
-//         lastName: formState.lastName,
-//       },
-//     });
-//     const token = mutationResponse.data.addUser.token;
-//     Auth.login(token);
-//   };
+function Signup() {
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+    username: ''
+  });
+  const [signUp, { error }] = useMutation(SIGN_UP);
 
-//   const handleChange = (event) => {
-//     const { name, value } = event.target;
-//     setFormState({
-//       ...formState,
-//       [name]: value,
-//     });
-//   };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await signUp({
+        variables: formState
+      });
+      const token = data.signUp.token;
+      Auth.login(token);
+    } catch (e) {
+      console.error("Signup error:", e);
+    }
+  };
 
-//   return (
-//     <div className="container">
-//       <Link to="/login">← Go to Login</Link>
-//       <Link to="/">← Go to Home Page</Link>
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  };
 
-//       <h2>Signup</h2>
-//       <form onSubmit={handleFormSubmit}>
-//         <div className="">
-//           <label htmlFor="firstName">First Name:</label>
-//           <input
-//             placeholder="First"
-//             name="firstName"
-//             type="firstName"
-//             id="firstName"
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div className="">
-//           <label htmlFor="lastName">Last Name:</label>
-//           <input
-//             placeholder="Last"
-//             name="lastName"
-//             type="lastName"
-//             id="lastName"
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div className="">
-//           <label htmlFor="email">Email:</label>
-//           <input
-//             placeholder="youremail@test.com"
-//             name="email"
-//             type="email"
-//             id="email"
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div className="">
-//           <label htmlFor="pwd">Password:</label>
-//           <input
-//             placeholder="******"
-//             name="password"
-//             type="password"
-//             id="pwd"
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div className="">
-//           <button type="submit">Submit</button>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
+  return (
+    <div className="container">
+      <Link to="/"><button>Back</button></Link>
 
-// export default Signup;
+      <h2>Sign Up</h2>
+      <form onSubmit={handleFormSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input
+            placeholder="Username"
+            name="username"
+            type="text"
+            id="username"
+            value={formState.username}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            placeholder="youremail@test.com"
+            name="email"
+            type="email"
+            id="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="pwd">Password:</label>
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            id="pwd"
+            value={formState.password}
+            onChange={handleChange}
+          />
+        </div>
+        {error && (
+          <div>
+            <p className="error-text">Error signing up. Please try again.</p>
+          </div>
+        )}
+        <div>
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default Signup;
