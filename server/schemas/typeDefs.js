@@ -1,88 +1,139 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Employee {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    password: String
-    posID: Int
-    roles: [Role]
-    tables: [Table]
-    shifts: [Shift]
+  type Person {
+    _id: ID!
+    username: String!
+    email: String!
+    password: String!
+    phone: String
+    age: Int
+    about: String
+    role: String
+    specializations: [String]
+    certifications: [String]
+    reviews: [Review]
+    conversations: [Conversation]
+    favorites: [Exercise]
+    friends: [Person]
   }
 
-  type Role {
-    _id: ID
-    name: String
-    hourlyRate: Float
-  }
-  
-  type Shift {
-    _id: ID
-    date: String
-    currentShift: Boolean
-    clockedIn: Boolean
-    clockIn: String
-    clockOut: String
-    breakStart: String
-    breakEnd: String
+  type Review {
+    _id: ID!
+    sender_Id: Person
+    receiver_Id: Person
+    messageContent: String!
+    timeStamp: String!
+    rating: Int!
   }
 
-  type Menu {
-    _id: ID
-    item: String
-    price: Float
-    ingredients: [String]
-    inStock: Boolean
-    quantity: Int
-    category: Category
+  type Message {
+    _id: ID!
+    conversationId: Conversation!
+    sender_Id: Person!
+    receiver_Id: Person!
+    messageContent: String!
+    timeStamp: String!
+    readStatus: Boolean
+    attachments: [String]
   }
 
-  type Table {
-    _id: ID
-    tableNum: Int
-    order: [Menu]
-    orderStatus: Boolean
-    tip: Float
-    date: String
-    tableStatus: Boolean
+  type Meal {
+    _id: ID!
+    conversationId: ID
+    sender_Id: Person
+    receiver_Id: Person
+    messageContent: String!
+    timeStamp: String!
+    readStatus: Boolean
+    attachments: [String]
   }
 
-  type Category {
-    _id: ID
-    name: String
+  type ExerciseType {
+    _id: ID!
+    name: String!
   }
 
-  type Auth {
-    token: ID
-    employeePOS: Employee
+  type Exercise {
+    _id: ID!
+    name: String!
+    type: ExerciseType
+    targetedMuscles: [String]
+    equipmentNeeded: String
+    description: String
+    difficultyLevel: String
+    photo: [String]
+    video: [String]
+  }
+
+  type WorkoutType {
+    _id: ID!
+    name: String!
+  }
+
+  type Workout {
+    _id: ID!
+    name: String!
+    exercises: [Exercise]
+    duration: Int
+    intensityLevel: String
+    targetAudience: String
+    workoutType: WorkoutType
+    description: String
+    photo: [String]
+    video: [String]
+  }
+
+  type Conversation {
+    _id: ID!
+    participants: [Person]
+    lastMessage: Message
+    lastUpdated: String
+  }
+
+  type MutationResponse {
+    success: Boolean!
+    message: String!
   }
 
   type Query {
-    # Find All
-    employees: [Employee]
-    menuItems: [Menu]
-    tables: [Table]
-
-    # Find One
-    employee(_id: ID!): Employee
-    menuItem(_id: ID!): Menu
-    table(_id: ID!): Table
-    me: Employee
+    allPersons: [Person]
+    personById(_id: ID!): Person
+    allReviews: [Review]
+    reviewById(_id: ID!): Review
+    allMessages: [Message]
+    messageById(_id: ID!): Message
+    allMeals: [Meal]
+    mealById(_id: ID!): Meal
+    allWorkouts: [Workout]
+    workoutById(_id: ID!): Workout
+    allExercises: [Exercise]
+    exerciseById(_id: ID!): Exercise
+    allConversations: [Conversation]
+    conversationById(_id: ID!): Conversation
   }
 
   type Mutation {
-    updateMenu(item: String!, price: Float, ingredients: [String], inStock: Boolean, quantity: Int, category: [ID]): Menu
-    updateTable(tableNum: Int!, order: [ID], orderStatus: Boolean, tip: Float, tableStatus: Boolean): Table
-    addShift(clockIn: String!, clockOut: String, breakStart: String, breakEnd: String, currentShift: Boolean, clockedIn: Boolean): Shift
-    updateShift(_id: ID!, currentShift: Boolean, clockedIn: Boolean, clockIn: String, clockOut: String, breakStart: String, breakEnd: String): Shift
-    login(email: String!, password: String!): Auth
-    loginPOS(posID: Int!): Auth
+    addPerson(username: String!, email: String!, password: String!): Person
+    updatePerson(_id: ID!, email: String, password: String): Person
+    deletePerson(_id: ID!): MutationResponse
+
+    addReview(sender_Id: ID!, receiver_Id: ID!, messageContent: String!, rating: Int!): Review
+    updateReview(_id: ID!, messageContent: String, rating: Int): Review
+    deleteReview(_id: ID!): MutationResponse
+
+    sendMessage(sender_Id: ID!, receiver_Id: ID!, messageContent: String!): Message
+    updateMessage(_id: ID!, readStatus: Boolean): Message
+    deleteMessage(_id: ID!): MutationResponse
+
+    addMeal(sender_Id: ID!, receiver_Id: ID!, messageContent: String!): Meal
+    updateMeal(_id: ID!, messageContent: String): Meal
+    deleteMeal(_id: ID!): MutationResponse
+
+    createConversation(participants: [ID!]!): Conversation
+    updateConversation(_id: ID!, lastMessage: ID!): Conversation
+    deleteConversation(_id: ID!): MutationResponse
   }
 `;
 
 module.exports = typeDefs;
-
-// TODO: FINISH MUTATIONS AND QUERIES!!

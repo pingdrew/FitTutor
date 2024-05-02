@@ -36,8 +36,8 @@ const Header = () => {
         <div>
           <a href="#About"><button>About</button></a>
           <a href="#Contact"><button>Contact</button></a>
-          <a href="#"><button href="#">Join</button></a>
-          <a href="#"><button href="#">Home</button></a>
+          <a href="/signup"><button>Join</button></a>
+          <a href="/login"><button>Home</button></a>
         </div>
       </header>
     </div>

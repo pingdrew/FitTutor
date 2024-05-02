@@ -1,165 +1,54 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { Employee, Menu, Category, Role, Shift, Table } = require('../models');
-const { signToken } = require('../utils/auth');
+const { Person, Review, Message, Meal, Exercise, Workout, Conversation } = require('./models');
 
 const resolvers = {
   Query: {
-    // FIND ALL
-    employees: async () => {
-      return await Employee.find().populate({
-        path: 'tables', 
-        populate: {
-          path: 'order', 
-          model: 'Menu',
-          populate: {
-            path: 'category'
-          }
-        }}).populate({path: 'shifts'}).populate({path: 'roles'})
-    },
-    menuItems: async () => {
-      return await Menu.find().populate('category');
-    },    
-
-    tables: async () => {
-      return await Table.find().populate({
-          path: 'order', 
-          model: 'Menu',
-          populate: {
-            path: 'category'
-          }
-        });
-    },
-
-    // FIND ONE
-    employee: async (_, { _id }) => {
-      try {
-        return await Employee.findById(_id).populate({
-          path: 'tables', 
-          populate: {
-            path: 'order', 
-            model: 'Menu',
-            populate: {
-              path: 'category'
-            }
-          }}).populate({path: 'shifts'}).populate({path: 'roles'});
-      } catch (error) {
-        throw new Error('Unable to fetch employee');
-      }
-    },
-    menuItem: async (_, { _id }) => {
-      try {
-        return await Menu.findById(_id);
-      } catch (error) {
-        throw new Error('Unable to fetch menu item');
-      }
-    },
-    table: async (_, { _id }) => {
-      try {
-        return await Table.findById(_id).populate({
-          path: 'order', 
-          model: 'Menu',
-          populate: {
-            path: 'category'
-          }
-        });
-      } catch (error) {
-        throw new Error('Unable to fetch table');
-      }
-    },
-    me: async(_,__, context)=>{
-      try{
-        if(context.employee){
-          const employee = await Employee.findById(context.employee._id).populate({
-            path: 'tables', 
-            populate: {
-              path: 'order', 
-              model: 'Menu',
-              populate: {
-                path: 'category'
-              }
-            }}).populate({path: 'shifts'}).populate({path: 'roles'});
-            return employee
-        }
-      }catch(err){
-        throw new Error('Not logged in!');
-      }
-    }
+    allPersons: () => Person.find({}),
+    personById: (_, { _id }) => Person.findById(_id),
+    allReviews: () => Review.find({}),
+    reviewById: (_, { _id }) => Review.findById(_id),
+    allMessages: () => Message.find({}),
+    messageById: (_, { _id }) => Message.findById(_id),
+    allMeals: () => Meal.find({}),
+    mealById: (_, { _id }) => Meal.findById(_id),
+    allWorkouts: () => Workout.find({}),
+    workoutById: (_, { _id }) => Workout.findById(_id),
+    allExercises: () => Exercise.find({}),
+    exerciseById: (_, { _id }) => Exercise.findById(_id),
+    allConversations: () => Conversation.find({}).populate('participants lastMessage'),
+    conversationById: (_, { _id }) => Conversation.findById(_id).populate('participants lastMessage'),
   },
   Mutation: {
-    updateMenu: async(_, args, context) => {
-        if(context.employee){
-          const menu = await Menu.findOneAndUpdate({item: args.item}, args, {new: true}).populate({path: 'category'});
-          return menu;
-        }
-        throw new AuthenticationError('Not logged in')
+    addPerson: (_, { username, email, password }) => new Person({ username, email, password }).save(),
+    updatePerson: (_, { _id, email, password }) => Person.findByIdAndUpdate(_id, { email, password }, { new: true }),
+    deletePerson: async (_, { _id }) => {
+      await Person.findByIdAndDelete(_id);
+      return { success: true, message: "Person deleted successfully" };
     },
-    updateTable: async(_, args, context) => {
-      if(context.employee){
-      const table = await Table.findOneAndUpdate({tableNum: args.tableNum}, args, {new: true }).populate({path: 'order', populate: {path: 'category'}});
-
-      await Employee.findByIdAndUpdate(
-        context.employee._id,
-        { $addToSet: {tables: table }},
-        {new: true});
-
-      return table;
-      }
+    addReview: (_, { sender_Id, receiver_Id, messageContent, rating }) => new Review({ sender_Id, receiver_Id, messageContent, rating }).save(),
+    updateReview: (_, { _id, messageContent, rating }) => Review.findByIdAndUpdate(_id, { messageContent, rating }, { new: true }),
+    deleteReview: async (_, { _id }) => {
+      await Review.findByIdAndDelete(_id);
+      return { success: true, message: "Review deleted successfully" };
     },
-    addShift: async(_, args, context) => {
-      if(context.employee){
-        const shift = await Shift.create(args);
-
-        await Employee.findByIdAndUpdate(
-          context.employee._id,
-          { $push: {shifts: shift }},
-          {new: true});
-        return shift ;
-      }
-      throw new AuthenticationError('Not logged in')
+    sendMessage: (_, { sender_Id, receiver_Id, messageContent }) => new Message({ sender_Id, receiver_Id, messageContent }).save(),
+    updateMessage: (_, { _id, readStatus }) => Message.findByIdAndUpdate(_id, { readStatus }, { new: true }),
+    deleteMessage: async (_, { _id }) => {
+      await Message.findByIdAndDelete(_id);
+      return { success: true, message: "Message deleted successfully" };
     },
-    updateShift: async(_, args, context)=>{
-      if(context.employee){
-        const updateShift = Shift.findByIdAndUpdate(args._id, args, {new: true });
-      return updateShift
-      }
-      throw new AuthenticationError('Not logged in')
+    addMeal: (_, { sender_Id, receiver_Id, messageContent }) => new Meal({ sender_Id, receiver_Id, messageContent }).save(),
+    updateMeal: (_, { _id, messageContent }) => Meal.findByIdAndUpdate(_id, { messageContent }, { new: true }),
+    deleteMeal: async (_, { _id }) => {
+      await Meal.findByIdAndDelete(_id);
+      return { success: true, message: "Meal deleted successfully" };
     },
-    login: async (parent, { email, password }) => {
-      const employee = await Employee.findOne({ email });
-
-      if (!employee) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const correctPw = await employee.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const token = signToken(employee);
-
-      return { token, employee };
+    createConversation: (_, { participants }) => new Conversation({ participants }).save(),
+    updateConversation: (_, { _id, lastMessage }) => Conversation.findByIdAndUpdate(_id, { lastMessage, lastUpdated: new Date() }, { new: true }),
+    deleteConversation: async (_, { _id }) => {
+      await Conversation.findByIdAndDelete(_id);
+      return { success: true, message: "Conversation deleted successfully" };
     },
-    loginPOS: async (parent, { posID }) => {
-      const employeePOS = await Employee.findOne({ posID: posID }).populate({
-        path: 'tables',
-        populate: {
-          path: 'order',
-          model: 'Menu',
-          populate: {
-            path: 'category'
-          }
-        }}).populate({path: 'shifts'}).populate({path: 'roles'});
-      if (!employeePOS) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const token = signToken(employeePOS);
-
-      return { token, employeePOS };
-    }
   }
-}
+};
 
 module.exports = resolvers;
