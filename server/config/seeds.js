@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Person, Review, Message, Meal, Exercise, Workout, Conversation } = require('./models');  // Adjust the path as needed to your models
+const { Person, Review, Message, Meal, Exercise, Workout, Conversation } = require('../models');  // Adjust the path as needed to your models
 
 mongoose.connect('mongodb://localhost:27017/yourDatabaseName', {  // Change yourDatabaseName to your actual database name
   useNewUrlParser: true,
