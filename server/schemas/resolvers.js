@@ -1,4 +1,7 @@
-const { Person, Review, Message, Meal, Exercise, Workout, Conversation } = require('./models');
+const { AuthenticationError } = require('apollo-server-express');
+console.log(__dirname);
+const { Person, Review, Message, Meal, Exercise, ExerciseType, Workout, WorkoutType, Conversation } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -16,6 +19,10 @@ const resolvers = {
     exerciseById: (_, { _id }) => Exercise.findById(_id),
     allConversations: () => Conversation.find({}).populate('participants lastMessage'),
     conversationById: (_, { _id }) => Conversation.findById(_id).populate('participants lastMessage'),
+    allExerciseTypes: () => ExerciseType.find({}),
+    exerciseTypeById: (_, { _id }) => ExerciseType.findById(_id),
+    allWorkoutTypes: () => WorkoutType.find({}),
+    workoutTypeById: (_, { _id }) => WorkoutType.findById(_id),
   },
   Mutation: {
     addPerson: (_, { username, email, password }) => new Person({ username, email, password }).save(),
@@ -48,6 +55,19 @@ const resolvers = {
       await Conversation.findByIdAndDelete(_id);
       return { success: true, message: "Conversation deleted successfully" };
     },
+    addExerciseType: (_, { name }) => new ExerciseType({ name }).save(),
+    updateExerciseType: (_, { _id, name }) => ExerciseType.findByIdAndUpdate(_id, { name }, { new: true }),
+    deleteExerciseType: async (_, { _id }) => {
+      await ExerciseType.findByIdAndDelete(_id);
+      return { success: true, message: "Exercise type deleted successfully" };
+    },
+    addWorkoutType: (_, { name }) => new WorkoutType({ name }).save(),
+    updateWorkoutType: (_, { _id, name }) => WorkoutType.findByIdAndUpdate(_id, { name }, { new: true }),
+    deleteWorkoutType: async (_, { _id }) => {
+      await WorkoutType.findByIdAndDelete(_id);
+      return { success: true, message: "Workout type deleted successfully" };
+    },
+
   }
 };
 

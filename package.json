@@ -18,7 +18,13 @@
   },
   "dependencies": {
     "@apollo/client": "^3.10.1",
+    "apollo-server": "^3.13.0",
+    "apollo-server-express": "^3.13.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "graphql": "^16.8.1",
-    "heroku": "^8.11.4"
+    "heroku": "^8.11.4",
+    "mongodb": "^6.6.0",
+    "mongoose": "^8.3.3"
   }
 }

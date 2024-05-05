@@ -1,4 +1,6 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const reviewSchema = new Schema({
   sender_Id: { type: Schema.Types.ObjectId, ref: 'Person' },
@@ -8,4 +10,6 @@ const reviewSchema = new Schema({
   rating: Number
 });
 
-module.exports = model('Review', reviewSchema);
+const Review = mongoose.model('Review', reviewSchema);
+
+module.exports = Review;

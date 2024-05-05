@@ -1,4 +1,6 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const personSchema = new Schema({
   username: { type: String, required: true },
@@ -16,4 +18,6 @@ const personSchema = new Schema({
   friends: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
 });
 
-module.exports = model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema);
+
+module.exports = Person;

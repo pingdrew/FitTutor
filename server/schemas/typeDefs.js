@@ -111,6 +111,10 @@ const typeDefs = gql`
     exerciseById(_id: ID!): Exercise
     allConversations: [Conversation]
     conversationById(_id: ID!): Conversation
+    allExerciseTypes: [ExerciseType]
+    exerciseTypeById(_id: ID!): ExerciseType
+    allWorkoutTypes: [WorkoutType]
+    workoutTypeById(_id: ID!): WorkoutType  
   }
 
   type Mutation {
@@ -133,6 +137,13 @@ const typeDefs = gql`
     createConversation(participants: [ID!]!): Conversation
     updateConversation(_id: ID!, lastMessage: ID!): Conversation
     deleteConversation(_id: ID!): MutationResponse
+    addExerciseType(name: String!): ExerciseType
+    updateExerciseType(_id: ID!, name: String!): ExerciseType
+    deleteExerciseType(_id: ID!): MutationResponse
+  
+    addWorkoutType(name: String!): WorkoutType
+    updateWorkoutType(_id: ID!, name: String!): WorkoutType
+    deleteWorkoutType(_id: ID!): MutationResponse  
   }
 `;
 
