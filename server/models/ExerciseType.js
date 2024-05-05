@@ -1,7 +1,11 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const exerciseTypeSchema = new Schema({
   name: { type: String, required: true }
 });
 
-module.exports = model('ExerciseType', exerciseTypeSchema);
+const ExerciseType = mongoose.model('ExerciseType', exerciseTypeSchema);
+
+module.exports = ExerciseType;

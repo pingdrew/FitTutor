@@ -1,4 +1,6 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const mealSchema = new Schema({
   conversationId: { type: Schema.Types.ObjectId, ref: 'Conversation' }, // Assuming this is similar to 'Message'
@@ -10,4 +12,6 @@ const mealSchema = new Schema({
   attachments: [String]
 });
 
-module.exports = model('Meal', mealSchema);
+const Meal = mongoose.model('Meal', mealSchema);
+
+module.exports = Meal;
