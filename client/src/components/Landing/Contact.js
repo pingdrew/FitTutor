@@ -21,9 +21,6 @@ function Contact() {
             <Typography variant="h6" color="whitesmoke">
               Email: pingdrew0@gmail.com
             </Typography>
-            <Typography variant="h6" color="whitesmoke">
-              Phone: Email us for inquiries  
-            </Typography>
           </Grid>
         </Grid>
       </Grid>

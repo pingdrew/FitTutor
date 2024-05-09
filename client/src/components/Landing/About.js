@@ -30,13 +30,14 @@ function About() {
       </Grid>
       <Grid container item xs={12} md={6} alignItems="center" justifyContent="center" sx={{ px: 2 }}>
         <Grid sx={{ pt: 2 }} textAlign='left'>
-          <Typography variant="h3" color="whitesmoke" sx={{ my:1 }}>
+          <Typography variant="h3" color="whitesmoke" sx={{ my: 1 }}>
             About
           </Typography>
           <Typography variant="h6" color="white">
             FitTutor is a platform that easily connects fitness enthusiasts with fitness industry professionals, and provides a free and open source encyclopedia for fitness and nutrition.
-            <br/>
-            Our mission is to make fitness expertise accessible to everyone, and to provide a platform for fitness professionals to connect with people. 
+          </Typography>
+          <Typography variant="h6" color="white">
+            Our mission is to provide a free premium encyclopedia of fitness, and to provide a platform for professionals to connect with people.
           </Typography>
         </Grid>
       </Grid>

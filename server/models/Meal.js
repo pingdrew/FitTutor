@@ -3,13 +3,53 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const mealSchema = new Schema({
-  conversationId: { type: Schema.Types.ObjectId, ref: 'Conversation' }, // Assuming this is similar to 'Message'
-  sender_Id: { type: Schema.Types.ObjectId, ref: 'Person' },
-  receiver_Id: { type: Schema.Types.ObjectId, ref: 'Person' },
-  messageContent: String,
-  timeStamp: { type: Date, default: Date.now },
-  readStatus: Boolean,
-  attachments: [String]
+    name: {
+        type: String,
+        required: true
+    },
+    ingredients: [{
+        ingredientName: {
+            type: String,
+            required: true
+        },
+        quantity: {
+            type: Number,
+            required: true
+        },
+        unit: {
+            type: String,
+            required: true
+        },
+        calories: Number,
+        proteins: Number,
+        carbohydrates: Number,
+        fats: Number,
+        fibers: Number,
+        sugars: Number,
+        vitamins: [{
+            name: String,
+            amount: Number
+        }],
+        minerals: [{
+            name: String,
+            amount: Number
+        }]
+    }],
+    totalCalories: {
+        type: Number,
+        required: true
+    },
+    totalProteins: Number,
+    totalCarbohydrates: Number,
+    totalFats: Number,
+    mealTime: {
+        type: Date,
+        default: Date.now
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 const Meal = mongoose.model('Meal', mealSchema);

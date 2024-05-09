@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const exerciseTypeSchema = new Schema({
-  name: { type: String, required: true }
+  name: {
+      type: String,
+      required: true
+  }
 });
 
 const ExerciseType = mongoose.model('ExerciseType', exerciseTypeSchema);

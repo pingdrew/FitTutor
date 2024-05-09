@@ -24,7 +24,7 @@
     "express": "^4.19.2",
     "graphql": "^16.8.1",
     "heroku": "^8.11.4",
-    "mongodb": "^6.6.0",
+    "mongodb": "^6.6.1",
     "mongoose": "^8.3.3"
   }
 }
