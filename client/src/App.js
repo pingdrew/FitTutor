@@ -8,11 +8,17 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import HomePage from './pages/Home/HomePage';
+import Landing from './pages/Landing/Landing';
 import Login from './pages/Landing/Login';
 import Signup from './pages/Landing/Signup';
 import NoMatch from './pages/NoMatch';
-import Landing from './pages/Landing/Landing';
+import HomePage from './pages/Home/HomePage';
+import ExplorePage from './pages/Home/ExplorePage';
+import ProfilePage from './pages/Home/ProfilePage';
+import SavedPage from './pages/Home/SavedPage';
+import ShopPage from './pages/Home/ShopPage';
+import FriendsPage from './pages/Home/FriendsPage';
+import ChatPage from './pages/Home/ChatPage';
 // FRONT END WEBSITE ROUTES ^^
 
 const httpLink = createHttpLink({
@@ -58,11 +64,29 @@ function App() {
             path="/home"
             element={<HomePage />}
           />
-
-          {/* 404 ROUTE vv */}
           <Route
-            path="*"
-            element={<NoMatch />}
+            path="/explore"
+            element={<ExplorePage />}
+          />
+          <Route
+            path="/profile"
+            element={<ProfilePage />}
+          />
+          <Route
+            path="/saved"
+            element={<SavedPage />}
+          />
+          <Route
+            path="/shop"
+            element={<ShopPage />}
+          />
+          <Route
+            path="/friends"
+            element={<FriendsPage />}
+          />
+          <Route
+            path="/chat"
+            element={<ChatPage />}
           />
         </Routes>
       </Router>
