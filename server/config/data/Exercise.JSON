@@ -1,24 +1,1725 @@
 {
   "exercises": [
-    {"name": "Abdominal Crunches", "type": "type", "targetedMuscles": ["Abdominals"], "equipmentNeeded": "None", "description": "Lie on the back, bend knees, lift upper body towards knees, lower back down.", "difficultyLevel": "Beginner", "photo": ["ab_crunches.png"], "video": ["ab_crunches.mp4"]},
-    {"name": "Chest Fly", "type": "type", "targetedMuscles": ["Chest"], "equipmentNeeded": "Dumbbells", "description": "Lie on a bench with dumbbells, extend arms out at sides, bring weights together above chest.", "difficultyLevel": "Intermediate", "photo": ["chest_fly.png"], "video": ["chest_fly.mp4"]},
-    {"name": "Deadlift", "type": "type", "targetedMuscles": ["Back", "Glutes", "Hamstrings"], "equipmentNeeded": "Barbell", "description": "Bend at the hips and knees, grip the barbell, stand up lifting the bar, lower it back down carefully.", "difficultyLevel": "Intermediate", "photo": ["deadlift.png"], "video": ["deadlift.mp4"]},
-    {"name": "Downward Dog", "type": "type", "targetedMuscles": ["Whole Body"], "equipmentNeeded": "Yoga mat", "description": "Start on all fours, lift hips up and back, creating an inverted V-shape with your body.", "difficultyLevel": "Beginner", "photo": ["downward_dog.png"], "video": ["downward_dog.mp4"]},
-    {"name": "Tricep Dips", "type": "type", "targetedMuscles": ["Triceps"], "equipmentNeeded": "Parallel bars", "description": "Grip the bars, lower your body by bending elbows, press up to start position.", "difficultyLevel": "Intermediate", "photo": ["tricep_dips.png"], "video": ["tricep_dips.mp4"]},
-    {"name": "Squats", "type": "type", "targetedMuscles": ["Quadriceps", "Glutes", "Hamstrings"], "equipmentNeeded": "None", "description": "Stand with feet hip width apart, bend knees and lower down as if sitting in a chair, return to start.", "difficultyLevel": "Beginner", "photo": ["squats.png"], "video": ["squats.mp4"]},
-    {"name": "Shoulder Press", "type": "type", "targetedMuscles": ["Shoulders"], "equipmentNeeded": "Dumbbells", "description": "Sit or stand, hold dumbbells at shoulder height, press them upwards until arms are extended, lower back.", "difficultyLevel": "Intermediate", "photo": ["shoulder_press.png"], "video": ["shoulder_press.mp4"]},
-    {"name": "Lat Pulldown", "type": "type", "targetedMuscles": ["Latissimus Dorsi"], "equipmentNeeded": "Lat pulldown machine", "description": "Sit at the machine, grip the bar, pull down towards chest, and slowly return to start.", "difficultyLevel": "Beginner", "photo": ["lat_pulldown.png"], "video": ["lat_pulldown.mp4"]},
-    {"name": "Leg Curls", "type": "type", "targetedMuscles": ["Hamstrings"], "equipmentNeeded": "Leg curl machine", "description": "Lie face down on the machine, curl legs up towards your buttocks, then slowly extend them back.", "difficultyLevel": "Beginner", "photo": ["leg_curls.png"], "video": ["leg_curls.mp4"]},
-    {"name": "Lunges", "type": "type", "targetedMuscles": ["Quadriceps", "Glutes"], "equipmentNeeded": "None", "description": "Step forward with one leg, lower your hips until both knees are bent at 90-degree angles, return to start.", "difficultyLevel": "Beginner", "photo": ["lunges.png"], "video": ["lunges.mp4"]},
-    {"name": "Jump Rope", "type": "type", "targetedMuscles": ["Cardiovascular System"], "equipmentNeeded": "Jump rope", "description": "Use a rope to jump as it passes under the feet, maintain a steady pace.", "difficultyLevel": "Beginner", "photo": ["jump_rope.png"], "video": ["jump_rope.mp4"]},
-    {"name": "Swimming - Freestyle", "type": "type", "targetedMuscles": ["Whole Body"], "equipmentNeeded": "Swimming pool", "description": "Swim using alternating arm strokes and a flutter kick.", "difficultyLevel": "Intermediate", "photo": ["swimming_freestyle.png"], "video": ["swimming_freestyle.mp4"]},
-    {"name": "Bicep Curls", "type": "type", "targetedMuscles": ["Biceps"], "equipmentNeeded": "Dumbbells", "description": "Stand with feet shoulder-width apart, hold dumbbells with arms extended, curl weights towards shoulders.", "difficultyLevel": "Beginner", "photo": ["bicep_curls.png"], "video": ["bicep_curls.mp4"]},
-    {"name": "Plank", "type": "type", "targetedMuscles": ["Core"], "equipmentNeeded": "None", "description": "Lie face down, lift your body on your toes and elbows, hold your body straight and rigid.", "difficultyLevel": "Beginner", "photo": ["plank.png"], "video": ["plank.mp4"]},
-    {"name": "Burpees", "type": "type", "targetedMuscles": ["Whole Body"], "equipmentNeeded": "None", "description": "Begin in a standing position, drop into a squat, extend your feet back into a plank, return to squat and jump up.", "difficultyLevel": "Intermediate", "photo": ["burpees.png"], "video": ["burpees.mp4"]},
-    {"name": "Push-ups", "type": "type", "targetedMuscles": ["Chest", "Triceps", "Shoulders"], "equipmentNeeded": "None", "description": "Start in a plank position, lower your body until your chest nearly touches the floor, push back up.", "difficultyLevel": "Beginner", "photo": ["push_ups.png"], "video": ["push_ups.mp4"]},
-    {"name": "Mountain Climbers", "type": "type", "targetedMuscles": ["Core", "Shoulders"], "equipmentNeeded": "None", "description": "Start in a plank position, alternately drive your knees towards your chest in a rapid motion.", "difficultyLevel": "Intermediate", "photo": ["mountain_climbers.png"], "video": ["mountain_climbers.mp4"]},
-    {"name": "Russian Twists", "type": "type", "targetedMuscles": ["Core"], "equipmentNeeded": "Medicine ball", "description": "Sit on the floor, lean back slightly, hold the medicine ball, and twist your torso from side to side.", "difficultyLevel": "Intermediate", "photo": ["russian_twists.png"], "video": ["russian_twists.mp4"]},
-    {"name": "Box Jumps", "type": "type", "targetedMuscles": ["Legs", "Cardiovascular System"], "equipmentNeeded": "Box or platform", "description": "Stand in front of the box, jump onto it with both feet, then jump back down.", "difficultyLevel": "Intermediate", "photo": ["box_jumps.png"], "video": ["box_jumps.mp4"]},
-    {"name": "Wall Sit", "type": "type", "targetedMuscles": ["Quadriceps"], "equipmentNeeded": "None", "description": "Slide your back down a wall until your thighs are parallel to the ground, hold the position as long as possible.", "difficultyLevel": "Beginner", "photo": ["wall_sit.png"], "video": ["wall_sit.mp4"]}
+    {
+      "name": "Bench Press",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Triceps",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "Barbell, Bench",
+      "description": "Lie back on a bench holding a barbell in the rack above you with a shoulder-width, overhand grip. Lift the bar off the rack and position it above your chest with arms fully extended. Lower the bar straight down, pause, and then press the bar back up to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Leg Press",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps",
+        "Hamstrings",
+        "Glutes"
+      ],
+      "equipmentNeeded": "Leg Press Machine",
+      "description": "Sit down on a leg press machine with your feet on the platform about shoulder width apart. Lower the platform until your knees are bent at about 90 degrees, then press back to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Planks",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Start in a forearm plank position with your elbows on the floor directly underneath your shoulders and your legs extended behind you. Keep your body straight from head to heels.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Resistance Band Chest Press",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Triceps"
+      ],
+      "equipmentNeeded": "Resistance Bands",
+      "description": "Attach the resistance bands to a stable object behind you. Hold the ends of the bands, step forward to create tension, and press your hands forward and then back towards your chest.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Sprinting",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs"
+      ],
+      "equipmentNeeded": "Track or Open Space",
+      "description": "Run at full speed over a short distance, such as 100 meters.",
+      "difficultyLevel": "Advanced"
+    }
+    {
+      "name": "Bench Press",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Triceps",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "Barbell, Bench",
+      "description": "Lie back on a bench holding a barbell in the rack above you with a shoulder-width, overhand grip. Lift the bar off the rack and position it above your chest with arms fully extended. Lower the bar straight down, pause, and then press the bar back up to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Squats",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps",
+        "Hamstrings",
+        "Glutes"
+      ],
+      "equipmentNeeded": "Barbell",
+      "description": "Stand with feet a little wider than shoulder-width apart, hips stacked over knees, and knees over ankles. Roll the shoulders back and down away from the ears. Extend arms out straight so they are parallel with the ground, palms facing down. Initiate the movement by inhaling and unlocking the hips, slightly bringing them back. Keep sending hips backward as the knees begin to bend. While the butt starts to stick out, make sure the chest and shoulders stay upright, and the back stays straight. Keep the head facing forward with eyes straight ahead for a neutral spine. The best squats are the deepest ones your mobility allows. Optimal squat depth would be your hips sinking below the knees (hamstrings covering calves).",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Deadlifts",
+      "type": "type",
+      "targetedMuscles": [
+        "Back",
+        "Glutes",
+        "Hamstrings"
+      ],
+      "equipmentNeeded": "Barbell",
+      "description": "Bend at your hips and knees and grab the bar with an overhand grip, your hands just beyond shoulder width. Without allowing your lower back to round, pull your torso back and up, thrust your hips forward, and stand up with the barbell. Squeeze your glutes as you perform the movement. Lower the bar to the floor, keeping it as close to your body as possible.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Shoulder Press",
+      "type": "type",
+      "targetedMuscles": [
+        "Shoulders",
+        "Triceps"
+      ],
+      "equipmentNeeded": "Dumbbells or Barbell",
+      "description": "Sit or stand with your back straight and hold a dumbbell in each hand at the level of your shoulders, palms facing forward. Extend your arms above your head until they're fully extended. Lower the dumbbells back down to shoulder level.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Bicep Curls",
+      "type": "type",
+      "targetedMuscles": [
+        "Biceps"
+      ],
+      "equipmentNeeded": "Dumbbells",
+      "description": "Stand up straight with a dumbbell in each hand at arm's length. Keep your elbows close to your torso and rotate the palms of your hands until they are facing forward. Now, keeping the upper arms stationary, exhale and curl the weights while contracting your biceps. Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level. Hold the contracted position for a brief pause as you squeeze your biceps.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Tricep Extensions",
+      "type": "type",
+      "targetedMuscles": [
+        "Triceps"
+      ],
+      "equipmentNeeded": "Dumbbell or Barbell",
+      "description": "Stand with a dumbbell held by both hands. Your feet should be about shoulder-width apart. The resistance should be resting on the palms of your hands with your thumbs around it. The palm of the hand should be facing inward. Slowly lower the resistance in an arc behind your head while your upper arms remain stationary, inhale as you perform this step. Go back to the starting position by using the triceps to raise the dumbbell.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Leg Press",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps",
+        "Hamstrings",
+        "Glutes"
+      ],
+      "equipmentNeeded": "Leg Press Machine",
+      "description": "Sit down on a leg press machine with your feet on the platform about shoulder width apart. Lower the platform until your knees are bent at about 90 degrees, then press back to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Chest Press Machine",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Triceps"
+      ],
+      "equipmentNeeded": "Chest Press Machine",
+      "description": "Adjust the seat so the handles are at chest level. Sit with your back against the pad and push the handles forward until your arms are fully extended, then return slowly to the starting position.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Lat Pulldown",
+      "type": "type",
+      "targetedMuscles": [
+        "Latissimus Dorsi",
+        "Biceps",
+        "Upper Back"
+      ],
+      "equipmentNeeded": "Lat Pulldown Machine",
+      "description": "Sit down at a lat pulldown station and grab the bar with an overhand grip that's just beyond shoulder width. Without moving your torso, pull the bar down to your chest as you squeeze your shoulder blades together. Pause, then slowly return the bar to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Cable Crossover",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest"
+      ],
+      "equipmentNeeded": "Cable Machine",
+      "description": "Stand in the middle of a cable station with the cables set high. Grasp the handles and step forward to create tension. Bring your hands together in front of your chest, flexing your pecs as you go. Slowly return to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Pec Deck",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest"
+      ],
+      "equipmentNeeded": "Pec Deck Machine",
+      "description": "Sit on the machine with your back flat on the pad. Place your arms on the platforms. Push the platforms together slowly as you squeeze your chest in the middle. Return to the starting position until your chest muscles are fully stretched.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Push-Ups",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Triceps",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Start in a plank position, lower your body until your chest nearly touches the floor, push back up.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Pull-Ups",
+      "type": "type",
+      "targetedMuscles": [
+        "Latissimus Dorsi",
+        "Biceps",
+        "Upper Back"
+      ],
+      "equipmentNeeded": "Pull-Up Bar",
+      "description": "Grasp a pull-up bar with an overhand grip, hands shoulder-width apart. Pull your body up until your chin is over the bar, then lower yourself back down to the full extended position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Planks",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Start in a forearm plank position with your elbows on the floor directly underneath your shoulders and your legs extended behind you. Keep your body straight from head to heels.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Bodyweight Squats",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps",
+        "Hamstrings",
+        "Glutes"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Stand with feet shoulder-width apart. Bend your knees and lower your hips as if sitting in a chair, while keeping your chest up and your back straight. Return to the starting position.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Lunges",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps",
+        "Glutes"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Step forward with one leg, lowering your hips until both knees are bent at about a 90-degree angle. Make sure your front knee is directly above your ankle, not pushed out too far, and make sure your other knee doesn't touch the floor. Keep the weight in your heels as you push back up to the starting position.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Band Pull Aparts",
+      "type": "type",
+      "targetedMuscles": [
+        "Shoulders",
+        "Upper Back"
+      ],
+      "equipmentNeeded": "Resistance Band",
+      "description": "Hold a resistance band in front of you with both hands, arms fully extended. Keeping your arms straight, pull the band apart and bring it toward your chest by moving your arms out to the sides. Slowly return to the starting position.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Resistance Band Chest Press",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Triceps"
+      ],
+      "equipmentNeeded": "Resistance Band",
+      "description": "Attach the resistance bands to a stable object behind you. Hold the ends of the bands, step forward to create tension, and press your hands forward and then back towards your chest.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Band Bicep Curls",
+      "type": "type",
+      "targetedMuscles": [
+        "Biceps"
+      ],
+      "equipmentNeeded": "Resistance Band",
+      "description": "Stand on a resistance band with your feet shoulder-width apart. Hold each end with your arms at your sides and palms facing forward. Curl your hands up toward your shoulders, keeping your elbows close to your body. Slowly lower your hands back to the starting position.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Band Tricep Extensions",
+      "type": "type",
+      "targetedMuscles": [
+        "Triceps"
+      ],
+      "equipmentNeeded": "Resistance Band",
+      "description": "Attach a resistance band to a high anchor point. Facing away from the anchor, grasp the band with both hands above your head. Extend your arms to raise your hands above your head fully. Slowly return to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Resistance Band Squats",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps",
+        "Glutes"
+      ],
+      "equipmentNeeded": "Resistance Band",
+      "description": "Stand on a resistance band with your feet slightly wider than shoulder-width apart. Hold the ends of the band up at your shoulders. Squat down while keeping your chest up and your knees behind your toes. Press back up to the starting position.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Plank Holds",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Get into a forearm plank position. Ensure your elbows are below your shoulders and your body is in a straight line from head to heels. Hold this position for as long as possible while maintaining good form.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Wall Sit",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Slide your back down a wall until your thighs are parallel to the ground. Ensure your knees are directly above your ankles and keep your back straight against the wall. Hold this position for as long as you can.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Isometric Squats",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps",
+        "Glutes"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Lower into a squat position and hold halfway down, keeping the knees behind the toes and chest upright. Hold this position for several seconds before standing back up.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Isometric Push-Ups",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Triceps",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Get into a push-up position and lower yourself to halfway. Hold this position for several seconds before pushing back up to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Isometric Bicep Hold",
+      "type": "type",
+      "targetedMuscles": [
+        "Biceps"
+      ],
+      "equipmentNeeded": "Dumbbells",
+      "description": "Hold a dumbbell in each hand with your elbows at a 90-degree angle. Maintain this position, keeping your biceps engaged without moving for several seconds.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Sprinting",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs"
+      ],
+      "equipmentNeeded": "Track or Open Space",
+      "description": "Run at full speed over a short distance, such as 100 meters.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Long-Distance Running",
+      "type": "type",
+      "targetedMuscles": [
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Track, Road, Trail",
+      "description": "Run at a steady pace over a long distance, typically 5 km or more, focusing on maintaining a consistent speed and efficient breathing.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Interval Running",
+      "type": "type",
+      "targetedMuscles": [
+        "Cardiovascular System",
+        "Legs"
+      ],
+      "equipmentNeeded": "Track or Open Space",
+      "description": "Alternate between running at a fast pace for a set distance or time and walking or jogging at a slower pace for recovery.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Hill Sprints",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Hill",
+      "description": "Sprint up a hill as fast as possible, then walk or jog back down for recovery, repeating several times.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Treadmill Running",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Treadmill",
+      "description": "Run on a treadmill at various speeds and inclines, suitable for all weather conditions and controlled training.",
+      "difficultyLevel": "Beginner to Advanced"
+    },
+    {
+      "name": "Road Cycling",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Road Bike",
+      "description": "Cycle on paved roads, focusing on distance and speed. Suitable for endurance training and competitive cycling.",
+      "difficultyLevel": "Intermediate to Advanced"
+    },
+    {
+      "name": "Mountain Biking",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Mountain Bike",
+      "description": "Ride on off-road trails, often over rough terrain, requiring technical biking skills and a high level of physical fitness.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Indoor Cycling Classes",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Stationary Bike",
+      "description": "Participate in a group fitness class on stationary bikes, led by an instructor who guides the session with varying speeds and resistance levels.",
+      "difficultyLevel": "Beginner to Intermediate"
+    },
+    {
+      "name": "Stationary Bike Intervals",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Stationary Bike",
+      "description": "Perform intervals on a stationary bike, alternating between high-intensity sprints and low-intensity recovery periods.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Recumbent Bike",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Recumbent Bike",
+      "description": "Cycle on a recumbent bike, which provides back support and a different leg angle, suitable for those with certain health conditions or preferences for comfort.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Hamstring Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Hamstrings"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Sit on the ground with one leg extended straight ahead and the other tucked in. Reach forward towards the toes of the extended leg, holding the stretch without bouncing.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Quadriceps Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Stand on one leg, pull your other leg behind you with the same hand, pushing your hips forward while pulling your heel towards your buttock.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Calf Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Calves"
+      ],
+      "equipmentNeeded": "None or Wall",
+      "description": "Place your hands on a wall and extend one leg back, keeping it straight and pressing the heel into the ground. The other leg should be bent at the knee in front of you.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Shoulder Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Shoulders"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Reach one arm across your body and use the other arm to pull the elbow of the extended arm towards your chest.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Tricep Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Triceps"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Raise one arm overhead, bend the elbow to touch the opposite shoulder blade, and use the other hand to gently pull the elbow.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Hamstring Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Hamstrings"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Sit on the ground with one leg extended straight ahead and the other tucked in. Reach forward towards the toes of the extended leg, holding the stretch without bouncing.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Quadriceps Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Quadriceps"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Stand on one leg, pull your other leg behind you with the same hand, pushing your hips forward while pulling your heel towards your buttock.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Calf Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Calves"
+      ],
+      "equipmentNeeded": "None or Wall",
+      "description": "Place your hands on a wall and extend one leg back, keeping it straight and pressing the heel into the ground. The other leg should be bent at the knee in front of you.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Shoulder Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Shoulders"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Reach one arm across your body and use the other arm to pull the elbow of the extended arm towards your chest.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Tricep Stretch",
+      "type": "type",
+      "targetedMuscles": [
+        "Triceps"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Raise one arm overhead, bend the elbow to touch the opposite shoulder blade, and use the other hand to gently pull the elbow.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Downward Dog",
+      "type": "type",
+      "targetedMuscles": [
+        "Hamstrings",
+        "Calves",
+        "Back"
+      ],
+      "equipmentNeeded": "Yoga Mat",
+      "description": "Start on your hands and knees, with your wrists under your shoulders and knees under your hips. Lift your hips up and back, pushing your heels towards the floor. Straighten your legs and arms to form an inverted V shape.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Warrior Poses",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core",
+        "Arms"
+      ],
+      "equipmentNeeded": "Yoga Mat",
+      "description": "Step one foot back and bend the front knee to a 90-degree angle, keeping the back leg straight. Extend your arms out to the sides and gaze over your front hand.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Tree Pose",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Stand on one leg, place the sole of your other foot on your inner thigh, maintaining balance while keeping your hips facing forward. Bring your hands into prayer position in front of your chest.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Cobra Pose",
+      "type": "type",
+      "targetedMuscles": [
+        "Back",
+        "Shoulders",
+        "Chest"
+      ],
+      "equipmentNeeded": "Yoga Mat",
+      "description": "Lie on your stomach with your hands under your shoulders. Push through your hands to lift your chest off the floor, extending your back.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Child’s Pose",
+      "type": "type",
+      "targetedMuscles": [
+        "Back",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "Yoga Mat",
+      "description": "Sit back on your heels with your knees wide apart, bend forward to lay your torso between your thighs, and stretch your arms forward on the floor.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Single-Leg Plank",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Glutes"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Perform a standard plank, then lift one leg off the ground and hold. Maintain a straight line from head to heels.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Swiss Ball Plank",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "Swiss Ball",
+      "description": "Place your forearms on a Swiss ball and extend your legs behind you, forming a straight line from head to heels.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Balance Board Plank",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "Balance Board",
+      "description": "Perform a plank with your forearms on a balance board, maintaining stability and a straight body line.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Side Planks",
+      "type": "type",
+      "targetedMuscles": [
+        "Obliques",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Lie on one side with your legs straight. Prop yourself up with your forearm so your body forms a diagonal line. Rest your other hand on your hip.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Stability Ball Rollouts",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "Stability Ball",
+      "description": "Kneel on the floor and place your forearms on a stability ball. Slowly roll the ball forward, extending your body as straight as possible, then pull back to the starting position.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Sprint Intervals",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Track or Open Space",
+      "description": "Alternate between sprinting at maximum effort for 20-30 seconds and resting or jogging for 1-2 minutes.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Hill Repeats",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Hill",
+      "description": "Sprint up a hill, then walk or jog back down for recovery, repeating the process several times.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Speed Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Cones, Track",
+      "description": "Set up cones for drills that require quick changes of direction, sprinting from one cone to another as fast as possible.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Tabata Sprints",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Track or Open Space",
+      "description": "Perform 20 seconds of all-out sprints followed by 10 seconds of rest, repeating for 4 minutes (8 cycles).",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Shuttle Runs",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Cones, Track",
+      "description": "Set up two cones about 25 yards apart. Sprint from one cone to the other and back, repeating several times for intervals.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Dribbling Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Basketball, Court",
+      "description": "Practice dribbling the basketball with alternating hands, focusing on speed and control. Include changes in direction and speed to simulate game situations.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Shooting Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs"
+      ],
+      "equipmentNeeded": "Basketball, Hoop",
+      "description": "Perform various shooting exercises from different positions on the court. Practice free throws, three-pointers, and jump shots, focusing on form and accuracy.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Defensive Stance Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Work on maintaining a proper defensive stance. Practice lateral movements, staying low, and quick footwork to simulate guarding an opponent.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Layup Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core",
+        "Arms"
+      ],
+      "equipmentNeeded": "Basketball, Hoop",
+      "description": "Practice layups from various angles and speeds. Focus on the approach, jump, and shot execution while using both the left and right hands.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Passing Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Core"
+      ],
+      "equipmentNeeded": "Basketball, Court",
+      "description": "Perform various passing techniques, including chest passes, bounce passes, and overhead passes. Practice accuracy and timing with a partner or against a wall.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Passing Patterns",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Soccer Ball, Cones",
+      "description": "Set up cones in various patterns and practice passing the ball accurately through the cones. Work on both short and long passes using different parts of the foot.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Dribbling Courses",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Soccer Ball, Cones",
+      "description": "Set up a course of cones and practice dribbling the ball through the cones with speed and control. Focus on close ball handling skills and quick changes in direction.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Shooting Practice",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs"
+      ],
+      "equipmentNeeded": "Soccer Ball, Goal",
+      "description": "Practice shooting from various distances and angles. Focus on accuracy and power, using both feet and different techniques such as volleys, headers, and ground shots.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Defensive Moves",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Practice various defensive techniques, including tackling, intercepting, and marking. Work on positioning, footwork, and anticipation.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Goalkeeping Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Soccer Ball, Goal",
+      "description": "Practice different goalkeeping skills such as diving, catching, and throwing. Work on reflexes, positioning, and distribution.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Freestyle Stroke",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Swimming Pool",
+      "description": "Also known as the front crawl, this stroke involves alternating arm movements with a flutter kick and rhythmic breathing to the side or front.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Breaststroke",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Arms",
+        "Legs"
+      ],
+      "equipmentNeeded": "Swimming Pool",
+      "description": "Swim with your arms performing a half-circle motion while your legs perform a frog kick. Breathing is timed with the arm strokes.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Butterfly Stroke",
+      "type": "type",
+      "targetedMuscles": [
+        "Upper Body",
+        "Core"
+      ],
+      "equipmentNeeded": "Swimming Pool",
+      "description": "This stroke uses a dolphin kick and simultaneous overhead arm motion, requiring good timing and strength.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Backstroke",
+      "type": "type",
+      "targetedMuscles": [
+        "Back",
+        "Arms",
+        "Legs"
+      ],
+      "equipmentNeeded": "Swimming Pool",
+      "description": "Float on your back, alternating arm strokes with a flutter kick, looking upwards and using the water line as a guide.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Pool Laps",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "Swimming Pool",
+      "description": "Swim laps in the pool using any of the strokes to improve endurance and strength.",
+      "difficultyLevel": "Varies"
+    },
+    {
+      "name": "Step Aerobics",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Aerobic Step",
+      "description": "Perform choreographed routines by stepping up and down on a raised platform to the beat of music, which improves coordination and burns calories.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Dance Aerobics",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Engage in dance movements and routines that elevate heart rate and provide a full body workout, often set to upbeat music.",
+      "difficultyLevel": "Varies"
+    },
+    {
+      "name": "Water Aerobics",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "Swimming Pool",
+      "description": "Perform aerobic exercises in shallow water typically in a pool. The water resistance adds intensity while minimizing joint stress.",
+      "difficultyLevel": "Beginner to Intermediate"
+    },
+    {
+      "name": "Boxercise",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Boxing Gloves, Punching Bag (optional)",
+      "description": "This involves boxing-inspired exercises without actual fighting, focusing on punches, jabs, kicks, and fitness drills.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Jump Rope",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Jump Rope",
+      "description": "Use a jump rope to perform a series of jumps and tricks that increase heart rate and improve agility and coordination.",
+      "difficultyLevel": "Beginner to Advanced"
+    },
+    {
+      "name": "The Hundred",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "Pilates Mat",
+      "description": "Lie on your back, lift your legs to a tabletop position, and raise your head and shoulders off the mat. Pump your arms up and down in small motions at your sides for 100 counts while breathing deeply.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Pilates Roll Up",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "Pilates Mat",
+      "description": "Lie flat on your back with your arms extended overhead. Slowly curl your body up off the mat into a seated 'C' position, reaching towards your toes, then slowly uncurl back to the starting position.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Leg Circles",
+      "type": "type",
+      "targetedMuscles": [
+        "Hip Flexors",
+        "Core"
+      ],
+      "equipmentNeeded": "Pilates Mat",
+      "description": "Lie on your back with one leg extended straight up to the ceiling. Circle the leg clockwise and then counterclockwise while keeping your hips still.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Pilates Teaser",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "Pilates Mat",
+      "description": "Lie on your back and extend your legs to a 45-degree angle. Simultaneously lift your arms and upper body to meet your legs at the top, forming a V shape with your body.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Saw",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Obliques"
+      ],
+      "equipmentNeeded": "Pilates Mat",
+      "description": "Sit with your legs spread wide and arms extended to the sides. Twist your torso and reach one hand towards the opposite foot, then switch sides.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Arm Circles",
+      "type": "type",
+      "targetedMuscles": [
+        "Shoulders"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Extend your arms parallel to the ground and rotate them in small circles, gradually increasing the size of the circles. Perform in both forward and backward motions.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Leg Swings",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Hip Flexors"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Stand on one leg and swing the other leg forward and backward, increasing the range of motion gradually. Switch legs after a set number of repetitions.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Torso Twists",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Obliques"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Stand with your feet shoulder-width apart and twist your torso to the left and right, letting your arms swing loosely at your sides.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Lunge With A Twist",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Step forward into a lunge position and rotate your torso and arms toward the leg that is in front. Return to the starting position and repeat on the opposite side.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "High Kicks",
+      "type": "type",
+      "targetedMuscles": [
+        "Hamstrings",
+        "Hip Flexors"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Perform high kicks with one leg at a time, aiming to reach as high as possible with each kick. Alternate legs to improve flexibility and dynamic leg strength.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Board Squats",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Balance Board",
+      "description": "Stand on a balance board and perform squats. Maintain balance as you squat down and rise back up, focusing on keeping the board stable.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Balance Board Lunges",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Balance Board",
+      "description": "Perform lunges while standing on a balance board. Step forward with one foot onto the board, lower your hips to drop your back knee toward the floor, and push back up to the starting position.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Balance Board Push-Ups",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Arms",
+        "Core"
+      ],
+      "equipmentNeeded": "Balance Board",
+      "description": "Place your hands on a balance board and extend your legs behind you into a push-up position. Perform push-ups while maintaining your balance on the board.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Balance Board Plank",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "Balance Board",
+      "description": "Place your forearms on the balance board and extend your legs behind you. Hold a plank position while balancing on the board.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Balance Board Wobble",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Legs"
+      ],
+      "equipmentNeeded": "Balance Board",
+      "description": "Stand on the balance board and shift your weight side to side, front to back, to create a wobbling motion. Maintain your balance without letting the edges of the board touch the ground.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Tabata Push-Ups",
+      "type": "type",
+      "targetedMuscles": [
+        "Chest",
+        "Arms",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Perform push-ups at a high intensity for 20 seconds followed by 10 seconds of rest. Repeat for 8 rounds.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Tabata Squats",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Do squats as quickly as possible for 20 seconds, then rest for 10 seconds. Repeat this sequence for 8 rounds.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Tabata Burpees",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Perform burpees at maximum effort for 20 seconds, rest for 10 seconds, and repeat for a total of 8 rounds.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Tabata Lunges",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Execute lunges at a high intensity for 20 seconds, followed by 10 seconds of rest. Continue this pattern for 8 rounds.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Tabata Planks",
+      "type": "type",
+      "targetedMuscles": [
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Hold a plank position for 20 seconds, then rest for 10 seconds. Repeat for 8 rounds.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Forehand Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Tennis Racquet, Tennis Balls, Court",
+      "description": "Practice forehand shots repeatedly using a variety of feeds to improve accuracy, power, and spin. Focus on footwork and racket handling.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Backhand Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Tennis Racquet, Tennis Balls, Court",
+      "description": "Perform multiple backhand shots focusing on form and consistency. Work on both single-handed and double-handed backhands.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Serving Practice",
+      "type": "type",
+      "targetedMuscles": [
+        "Shoulders",
+        "Core",
+        "Legs"
+      ],
+      "equipmentNeeded": "Tennis Racquet, Tennis Balls, Court",
+      "description": "Practice serving with different speeds and spins. Aim for accuracy by targeting specific areas of the service box.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Volley Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Tennis Racquet, Tennis Balls, Net, Court",
+      "description": "Practice volleying at the net with a partner. Focus on quick reflexes, racket control, and placement.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Footwork Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Cones, Ladder, Tennis Court",
+      "description": "Perform drills that enhance agility and speed on the court. Use agility ladders and cones to create patterns that mimic on-court movement.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Driving Range",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Shoulders",
+        "Back",
+        "Core"
+      ],
+      "equipmentNeeded": "Golf Clubs, Golf Balls, Driving Range",
+      "description": "Practice driving with a focus on improving distance and accuracy. Work on stance, grip, and swing mechanics.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Putting Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Core"
+      ],
+      "equipmentNeeded": "Golf Putter, Golf Balls, Putting Green",
+      "description": "Perform various putting exercises to improve accuracy and control. Practice from different distances and slopes.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Chipping Practice",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Core"
+      ],
+      "equipmentNeeded": "Golf Clubs, Golf Balls, Practice Green",
+      "description": "Practice chipping from various lies around the green. Focus on shot selection, trajectory, and landing spots to improve short game.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Sand Trap Shots",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Shoulders",
+        "Core"
+      ],
+      "equipmentNeeded": "Sand Wedge, Golf Balls, Sand Bunker",
+      "description": "Practice hitting out of sand traps. Focus on the technique for different types of sand shots to ensure ball control and recovery.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Swing Analysis",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core",
+        "Back"
+      ],
+      "equipmentNeeded": "Golf Clubs, Video Equipment or Swing Analyzer",
+      "description": "Analyze your swing with video or specialized equipment to identify and correct inefficiencies for improved performance.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Rotator Cuff Exercises",
+      "type": "type",
+      "targetedMuscles": [
+        "Shoulders"
+      ],
+      "equipmentNeeded": "Resistance Bands, Dumbbells",
+      "description": "Perform exercises that strengthen the rotator cuff muscles, such as internal and external rotations with resistance bands or light dumbbells, to improve shoulder stability and reduce injury risk.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Knee Rehabilitation Exercises",
+      "type": "type",
+      "targetedMuscles": [
+        "Knees",
+        "Legs"
+      ],
+      "equipmentNeeded": "None, Stability Ball",
+      "description": "Engage in exercises that focus on strengthening the muscles around the knee, including squats, leg presses, and leg extensions, using body weight or light resistance to enhance knee stability.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Ankle Stabilization Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Ankles"
+      ],
+      "equipmentNeeded": "Balance Board, Resistance Bands",
+      "description": "Perform drills that improve ankle stability and strength, such as standing on one foot, using a balance board, or performing resisted ankle movements with a band.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Hip Mobility Drills",
+      "type": "type",
+      "targetedMuscles": [
+        "Hips"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Execute mobility exercises aimed at increasing hip flexibility and strength, such as leg swings, hip rotations, and bridging.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Core Strengthening for Back Pain",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Lower Back"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Focus on core strengthening exercises that support the lower back, including planks, bird dogs, and gentle back extensions, to alleviate and prevent back pain.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Barre Workouts",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Ballet Barre",
+      "description": "Perform exercises at the ballet barre, including pliés, tendus, and leg lifts, to improve posture, flexibility, and lower body strength.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Center Practice",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Practice ballet movements in the center of the room without barre support, focusing on maintaining balance and grace through various poses and sequences.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Pointe Work",
+      "type": "type",
+      "targetedMuscles": [
+        "Feet",
+        "Legs"
+      ],
+      "equipmentNeeded": "Pointe Shoes",
+      "description": "Engage in exercises and dance sequences on pointe to strengthen the toes, feet, and ankles, while enhancing technical skill and balance.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Jumps",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Perform various ballet jumps, focusing on height and form, to increase leg strength and cardiovascular endurance.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Turns",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Legs"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Practice ballet turns, such as pirouettes, to improve balance, coordination, and core engagement.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Barre Workouts",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Ballet Barre",
+      "description": "Perform exercises at the ballet barre, including pliés, tendus, and leg lifts, to improve posture, flexibility, and lower body strength.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Center Practice",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Practice ballet movements in the center of the room without barre support, focusing on maintaining balance and grace through various poses and sequences.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Pointe Work",
+      "type": "type",
+      "targetedMuscles": [
+        "Feet",
+        "Legs"
+      ],
+      "equipmentNeeded": "Pointe Shoes",
+      "description": "Engage in exercises and dance sequences on pointe to strengthen the toes, feet, and ankles, while enhancing technical skill and balance.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Jumps",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Perform various ballet jumps, focusing on height and form, to increase leg strength and cardiovascular endurance.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Turns",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Legs"
+      ],
+      "equipmentNeeded": "None",
+      "description": "Practice ballet turns, such as pirouettes, to improve balance, coordination, and core engagement.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "CrossFit WODs",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "Varies (Barbells, Dumbbells, Kettlebells, Pull-Up Bar)",
+      "description": "Participate in the Workout of the Day (WOD) that typically includes a mix of aerobic, bodyweight, and Olympic lifting exercises designed to improve strength, stamina, and agility.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Olympic Lifting",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Back",
+        "Shoulders"
+      ],
+      "equipmentNeeded": "Barbell, Weights",
+      "description": "Perform Olympic lifts such as the clean and jerk and the snatch to improve explosive power and full-body strength.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Gymnastics Moves",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Arms"
+      ],
+      "equipmentNeeded": "Gymnastics Rings, Parallel Bars",
+      "description": "Incorporate gymnastic exercises like muscle-ups, handstands, and L-sits to enhance body control, strength, and balance.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Powerlifting",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Back",
+        "Arms"
+      ],
+      "equipmentNeeded": "Barbell, Weight Plates",
+      "description": "Focus on powerlifting techniques involving the squat, bench press, and deadlift to build maximum strength.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Metabolic Conditioning",
+      "type": "type",
+      "targetedMuscles": [
+        "Cardiovascular System",
+        "Muscular Endurance"
+      ],
+      "equipmentNeeded": "Varies (Rowing Machine, Jump Rope, Kettlebells)",
+      "description": "Engage in high-intensity circuits that combine strength, cardio, and plyometric movements to increase metabolic rate and improve overall fitness.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Trail Hiking",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Hiking Boots, Backpack",
+      "description": "Walk along marked trails in natural settings, which can range from easy to challenging, often involving varying elevations and terrains.",
+      "difficultyLevel": "Varies"
+    },
+    {
+      "name": "Mountain Trekking",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Hiking Boots, Trekking Poles, Backpack",
+      "description": "Engage in long, strenuous walks up mountains, which requires significant endurance and can involve navigating through difficult terrains.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Nordic Walking",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Nordic Walking Poles",
+      "description": "Use specially designed walking poles to enhance regular walking, providing an upper body workout along with the cardiovascular benefits of walking.",
+      "difficultyLevel": "Beginner"
+    },
+    {
+      "name": "Scrambling",
+      "type": "type",
+      "targetedMuscles": [
+        "Full Body"
+      ],
+      "equipmentNeeded": "Climbing Shoes, Helmet, Optional Safety Gear",
+      "description": "Climb or move over rocks and rough terrain using both hands and feet, often without technical climbing equipment.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Backpacking",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Back",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Backpack, Camping Gear, Durable Clothing",
+      "description": "Hike with a backpack containing all necessary gear for multiple days, often covering varied terrains and longer distances.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Bouldering",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Climbing Shoes, Chalk",
+      "description": "Climb short but challenging routes, known as problems, on boulders using no ropes or harnesses. Focus is on technique and strength.",
+      "difficultyLevel": "Intermediate to Advanced"
+    },
+    {
+      "name": "Sport Climbing",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Climbing Shoes, Harness, Rope, Quickdraws",
+      "description": "Climb longer rock faces using permanent anchors and bolts for protection, with a focus on endurance and climbing technique.",
+      "difficultyLevel": "Intermediate to Advanced"
+    },
+    {
+      "name": "Traditional Climbing",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Climbing Shoes, Harness, Rope, Traditional Gear (Cams, Nuts)",
+      "description": "Climb using removable gear to protect against falls. Requires knowledge of gear placement and route finding.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Indoor Rock Climbing",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Climbing Shoes, Harness",
+      "description": "Climb artificial rock walls indoors, which is a controlled environment that allows for learning techniques and building strength and endurance.",
+      "difficultyLevel": "Beginner to Advanced"
+    },
+    {
+      "name": "Multi-Pitch Climbing",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Climbing Shoes, Harness, Rope, Traditional or Sport Climbing Gear",
+      "description": "Climb routes that are longer than the length of one rope stretch, requiring the setup of multiple belays and managing longer durations on the wall.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Kayaking",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Shoulders",
+        "Core"
+      ],
+      "equipmentNeeded": "Kayak, Paddle, Life Jacket",
+      "description": "Paddle a kayak using a double-bladed paddle in various water environments, ranging from calm lakes to rapid rivers, focusing on upper body strength and maneuverability.",
+      "difficultyLevel": "Beginner to Advanced"
+    },
+    {
+      "name": "Canoeing",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Core",
+        "Back"
+      ],
+      "equipmentNeeded": "Canoe, Paddle, Life Jacket",
+      "description": "Paddle a canoe using a single-bladed paddle, which can be done solo or with a partner. Involves navigating various waterways and requires coordination and physical strength.",
+      "difficultyLevel": "Beginner to Intermediate"
+    },
+    {
+      "name": "Stand-Up Paddleboarding",
+      "type": "type",
+      "targetedMuscles": [
+        "Core",
+        "Legs",
+        "Arms"
+      ],
+      "equipmentNeeded": "Stand-Up Paddleboard, Paddle, Life Jacket",
+      "description": "Stand on a large, stable board and use a long paddle to navigate through water. Focuses on balance and core strength.",
+      "difficultyLevel": "Beginner to Intermediate"
+    },
+    {
+      "name": "Rafting",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Core",
+        "Cardiovascular System"
+      ],
+      "equipmentNeeded": "Raft, Paddle, Helmet, Life Jacket",
+      "description": "Navigate a raft through river rapids of varying difficulty, requiring teamwork, physical endurance, and quick reactions.",
+      "difficultyLevel": "Intermediate to Advanced"
+    },
+    {
+      "name": "Dragon Boat Racing",
+      "type": "type",
+      "targetedMuscles": [
+        "Arms",
+        "Shoulders",
+        "Back",
+        "Core"
+      ],
+      "equipmentNeeded": "Dragon Boat, Paddle",
+      "description": "Paddle in unison with a team in a long, narrow boat traditionally styled with a dragon head and tail, focusing on synchronization, power, and endurance.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Downhill Skiing",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Skis, Ski Poles, Ski Boots",
+      "description": "Ski down slopes at various speeds and difficulty levels, using carved turns to navigate. Focuses on leg strength, balance, and agility.",
+      "difficultyLevel": "Intermediate to Advanced"
+    },
+    {
+      "name": "Cross-Country Skiing",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Arms",
+        "Core"
+      ],
+      "equipmentNeeded": "Cross-Country Skis, Ski Poles",
+      "description": "Ski across flat or rolling landscapes using skis and poles to push and glide. Enhances endurance and cardiovascular fitness.",
+      "difficultyLevel": "Intermediate"
+    },
+    {
+      "name": "Freestyle Skiing",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Skis, Ski Boots, Safety Gear",
+      "description": "Perform tricks, jumps, and other maneuvers on skis in a freestyle park or on natural terrain, requiring agility and creative skiing skills.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Backcountry Skiing",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Core"
+      ],
+      "equipmentNeeded": "Backcountry Skis, Ski Poles, Avalanche Safety Equipment",
+      "description": "Ski in unpatrolled areas outside of ski resort boundaries, typically involving both uphill and downhill skiing. Requires knowledge of avalanche safety and good physical conditioning.",
+      "difficultyLevel": "Advanced"
+    },
+    {
+      "name": "Ski Touring",
+      "type": "type",
+      "targetedMuscles": [
+        "Legs",
+        "Arms",
+        "Core"
+      ],
+      "equipmentNeeded": "Touring Skis, Ski Poles, Climbing Skins",
+      "description": "Travel over snow-covered terrain using skis equipped with climbing skins to provide traction for uphill movement. Combines aspects of both downhill and cross-country skiing.",
+      "difficultyLevel": "Advanced"
+    }
   ]
 }
