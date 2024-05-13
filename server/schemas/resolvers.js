@@ -1,6 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 console.log(__dirname);
-const { Person, Review, Message, Meal, Exercise, ExerciseType, Workout, WorkoutType, Conversation } = require('../models');
+const { Person, Review, Message, Meal, Ingredient, Exercise, ExerciseType, Workout, WorkoutType, Conversation } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -13,6 +13,8 @@ const resolvers = {
     messageById: (_, { _id }) => Message.findById(_id),
     allMeals: () => Meal.find({}),
     mealById: (_, { _id }) => Meal.findById(_id),
+    allIngredients: () => Ingredient.find({}),
+    ingredientById: (_, { _id }) => Ingredient.findById(_id),
     allWorkouts: () => Workout.find({}),
     workoutById: (_, { _id }) => Workout.findById(_id),
     allExercises: () => Exercise.find({}),
@@ -31,10 +33,10 @@ const resolvers = {
       await Person.findByIdAndDelete(_id);
       return { success: true, message: "Person deleted successfully" };
     },
-    addReview: (_, { sender_Id, receiver_Id, messageContent, rating }) => new Review({ sender_Id, receiver_Id, messageContent, rating }).save(),
-    updateReview: (_, { _id, messageContent, rating }) => Review.findByIdAndUpdate(_id, { messageContent, rating }, { new: true }),
-    deleteReview: async (_, { _id }) => {
-      await Review.findByIdAndDelete(_id);
+    addReview: async (_, { review }) => new Review(review).save(),
+    updateReview: async (_, { id, review }) => Review.findByIdAndUpdate(id, review, { new: true }),
+    deleteReview: async (_, { id }) => {
+      await Review.findByIdAndRemove(id);
       return { success: true, message: "Review deleted successfully" };
     },
     sendMessage: (_, { sender_Id, receiver_Id, messageContent }) => new Message({ sender_Id, receiver_Id, messageContent }).save(),
@@ -43,11 +45,17 @@ const resolvers = {
       await Message.findByIdAndDelete(_id);
       return { success: true, message: "Message deleted successfully" };
     },
-    addMeal: (_, { sender_Id, receiver_Id, messageContent }) => new Meal({ sender_Id, receiver_Id, messageContent }).save(),
-    updateMeal: (_, { _id, messageContent }) => Meal.findByIdAndUpdate(_id, { messageContent }, { new: true }),
+    addMeal: (_, { meal }) => new Meal(meal).save(),
+    updateMeal: (_, { _id, meal }) => Meal.findByIdAndUpdate(_id, meal, { new: true }),
     deleteMeal: async (_, { _id }) => {
       await Meal.findByIdAndDelete(_id);
       return { success: true, message: "Meal deleted successfully" };
+    },
+    addIngredient: (_, { ingredient }) => new Ingredient(ingredient).save(),
+    updateIngredient: (_, { _id, ingredient }) => Ingredient.findByIdAndUpdate(_id, ingredient, { new: true }),
+    deleteIngredient: async (_, { _id }) => {
+      await Ingredient.findByIdAndDelete(_id);
+      return { success: true, message: "Ingredient deleted successfully" };
     },
     createConversation: (_, { participants }) => new Conversation({ participants }).save(),
     updateConversation: (_, { _id, lastMessage }) => Conversation.findByIdAndUpdate(_id, { lastMessage, lastUpdated: new Date() }, { new: true }),
@@ -67,7 +75,6 @@ const resolvers = {
       await WorkoutType.findByIdAndDelete(_id);
       return { success: true, message: "Workout type deleted successfully" };
     },
-
   }
 };
 

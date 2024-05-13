@@ -42,3 +42,6 @@ const startApolloServer = async () => {
 
 // Call the async function to start the server
 startApolloServer();
+
+
+//todo: fix resolvers and typedefs to fit my schemas

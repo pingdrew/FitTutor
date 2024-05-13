@@ -19,12 +19,22 @@ const typeDefs = gql`
   }
 
   type Review {
-    _id: ID!
-    sender_Id: Person
-    receiver_Id: Person
-    messageContent: String!
-    timeStamp: String!
-    rating: Int!
+    id: ID!
+    reviewer_Id: ID!
+    reviewedItem_Id: ID!
+    onModel: String!
+    messageContent: String
+    timeStamp: String
+    rating: Float
+  }  
+
+  input ReviewInput {
+    reviewer_Id: ID!
+    reviewedItem_Id: ID!
+    onModel: String!
+    messageContent: String
+    timeStamp: String
+    rating: Float
   }
 
   type Message {
@@ -47,6 +57,45 @@ const typeDefs = gql`
     timeStamp: String!
     readStatus: Boolean
     attachments: [String]
+  }
+
+  input MealInput {
+    conversationId: ID
+    sender_Id: ID
+    receiver_Id: ID
+    messageContent: String!
+    timeStamp: String!
+    readStatus: Boolean
+    attachments: [String]
+  }
+
+  type Ingredient {
+    _id: ID!
+    ingredientName: String!
+    unit: String!
+    quantity: Float
+    calories: Float
+    proteins: Float
+    carbohydrates: Float
+    fats: Float
+    fibers: Float
+    sugars: Float
+    vitamins: [String]
+    minerals: [String]
+  }
+
+  input IngredientInput {
+    ingredientName: String!
+    unit: String!
+    quantity: Float
+    calories: Float
+    proteins: Float
+    carbohydrates: Float
+    fats: Float
+    fibers: Float
+    sugars: Float
+    vitamins: [String]
+    minerals: [String]
   }
 
   type ExerciseType {
@@ -105,6 +154,8 @@ const typeDefs = gql`
     messageById(_id: ID!): Message
     allMeals: [Meal]
     mealById(_id: ID!): Meal
+    allIngredients: [Ingredient]
+    ingredientById(_id: ID!): Ingredient
     allWorkouts: [Workout]
     workoutById(_id: ID!): Workout
     allExercises: [Exercise]
@@ -122,21 +173,26 @@ const typeDefs = gql`
     updatePerson(_id: ID!, email: String, password: String): Person
     deletePerson(_id: ID!): MutationResponse
 
-    addReview(sender_Id: ID!, receiver_Id: ID!, messageContent: String!, rating: Int!): Review
-    updateReview(_id: ID!, messageContent: String, rating: Int): Review
-    deleteReview(_id: ID!): MutationResponse
+    addReview(review: ReviewInput!): Review
+    updateReview(id: ID!, review: ReviewInput!): Review
+    deleteReview(id: ID!): MutationResponse
 
     sendMessage(sender_Id: ID!, receiver_Id: ID!, messageContent: String!): Message
     updateMessage(_id: ID!, readStatus: Boolean): Message
     deleteMessage(_id: ID!): MutationResponse
 
-    addMeal(sender_Id: ID!, receiver_Id: ID!, messageContent: String!): Meal
-    updateMeal(_id: ID!, messageContent: String): Meal
+    addMeal(meal: MealInput!): Meal
+    updateMeal(_id: ID!, meal: MealInput!): Meal
     deleteMeal(_id: ID!): MutationResponse
+
+    addIngredient(ingredient: IngredientInput!): Ingredient
+    updateIngredient(_id: ID!, ingredient: IngredientInput!): Ingredient
+    deleteIngredient(_id: ID!): MutationResponse  
 
     createConversation(participants: [ID!]!): Conversation
     updateConversation(_id: ID!, lastMessage: ID!): Conversation
     deleteConversation(_id: ID!): MutationResponse
+
     addExerciseType(name: String!): ExerciseType
     updateExerciseType(_id: ID!, name: String!): ExerciseType
     deleteExerciseType(_id: ID!): MutationResponse

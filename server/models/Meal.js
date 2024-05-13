@@ -8,32 +8,9 @@ const mealSchema = new Schema({
         required: true
     },
     ingredients: [{
-        ingredientName: {
-            type: String,
-            required: true
-        },
-        quantity: {
-            type: Number,
-            required: true
-        },
-        unit: {
-            type: String,
-            required: true
-        },
-        calories: Number,
-        proteins: Number,
-        carbohydrates: Number,
-        fats: Number,
-        fibers: Number,
-        sugars: Number,
-        vitamins: [{
-            name: String,
-            amount: Number
-        }],
-        minerals: [{
-            name: String,
-            amount: Number
-        }]
+        type: Schema.Types.ObjectId,
+        ref: 'Ingredient',
+        required: true
     }],
     totalCalories: {
         type: Number,

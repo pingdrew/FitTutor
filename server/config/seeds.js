@@ -20,8 +20,8 @@ db.once('open', async () => {
 
   // Sample Persons
   const persons = await Person.insertMany([
-    { username: 'JohnDoe', email: 'john@example.com', password: 'password123', role: 'User' },
-    { username: 'JaneDoe', email: 'jane@example.com', password: 'password123', role: 'Admin' }
+    { username: 'drew', email: 'drew@gmail.com', password: 'nothappenin', role: 'Admin' },
+    { username: 'JaneDoe', email: 'jane@example.com', password: 'password123', role: 'User' }
   ]);
   console.log('Person seeding complete!');
 
@@ -103,7 +103,6 @@ db.once('open', async () => {
     {name: "Outdoor Activities - Rock Climbing"},
     {name: "Outdoor Activities - Paddle Sports"},
     {name: "Outdoor Activities - Skiing"}
-
   ]);
 
   // Exercises
