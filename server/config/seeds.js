@@ -27,7 +27,7 @@ db.once('open', async () => {
 
   // Sample Reviews
   const reviews = await Review.insertMany([
-    { sender_Id: persons[0]._id, receiver_Id: persons[1]._id, messageContent: 'Great experience!', rating: 5, timeStamp: new Date() }
+    { sender_Id: persons[0]._id, receiver_Id: persons[1]._id, onModel: 'Exercise', messageContent: 'Great experience!', rating: 5, timeStamp: new Date() }
   ]);
   console.log('Review seeding complete!');
 
