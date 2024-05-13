@@ -6,6 +6,7 @@ export const SIGN_UP = gql`
       token
       user {
         _id
+        username
         email
       }
     }
@@ -29,19 +30,40 @@ export const DELETE_PERSON = gql`
   }
 `;
 
+export const ADD_PERSON = gql`
+  mutation AddPerson($username: String!, $email: String!, $password: String!, $role: String!) {
+    addPerson(username: $username, email: $email, password: $password, role: $role) {
+      _id
+      username
+      email
+      role
+    }
+  }
+`;
+
+export const UPDATE_PERSON = gql`
+  mutation UpdatePerson($_id: ID!, $email: String, $password: String, $phone: String, $age: Int, $about: String, $role: String) {
+    updatePerson(_id: $_id, email: $email, password: $password, phone: $phone, age: $age, about: $about, role: $role) {
+      success
+      message
+    }
+  }
+`;
+
 export const ADD_REVIEW = gql`
-  mutation AddReview($sender_Id: ID!, $receiver_Id: ID!, $messageContent: String!, $rating: Int!) {
-    addReview(sender_Id: $sender_Id, receiver_Id: $receiver_Id, messageContent: $messageContent, rating: $rating) {
+  mutation AddReview($reviewInput: ReviewInput!) {
+    addReview(review: $reviewInput) {
       _id
       messageContent
       rating
+      timeStamp
     }
   }
 `;
 
 export const UPDATE_REVIEW = gql`
-  mutation UpdateReview($_id: ID!, $messageContent: String, $rating: Int) {
-    updateReview(_id: $_id, messageContent: $messageContent, rating: $rating) {
+  mutation UpdateReview($reviewInput: ReviewInput!, $_id: ID!) {
+    updateReview(review: $reviewInput, _id: $_id) {
       success
       message
     }
@@ -58,10 +80,12 @@ export const DELETE_REVIEW = gql`
 `;
 
 export const SEND_MESSAGE = gql`
-  mutation SendMessage($sender_Id: ID!, $receiver_Id: ID!, $messageContent: String!) {
-    sendMessage(sender_Id: $sender_Id, receiver_Id: $receiver_Id, messageContent: $messageContent) {
+  mutation SendMessage($messageInput: MessageInput!) {
+    sendMessage(message: $messageInput) {
       _id
       messageContent
+      timeStamp
+      readStatus
     }
   }
 `;
@@ -115,17 +139,18 @@ export const DELETE_CONVERSATION = gql`
 `;
 
 export const ADD_MEAL = gql`
-  mutation AddMeal($sender_Id: ID!, $receiver_Id: ID!, $messageContent: String!) {
-    addMeal(sender_Id: $sender_Id, receiver_Id: $receiver_Id, messageContent: $messageContent) {
+  mutation AddMeal($mealInput: MealInput!) {
+    addMeal(meal: $mealInput) {
       _id
       messageContent
+      timeStamp
     }
   }
 `;
 
 export const UPDATE_MEAL = gql`
-  mutation UpdateMeal($_id: ID!, $messageContent: String) {
-    updateMeal(_id: $_id, messageContent: $messageContent) {
+  mutation UpdateMeal($_id: ID!, $mealInput: MealInput!) {
+    updateMeal(_id: $_id, meal: $mealInput) {
       success
       message
     }
@@ -142,8 +167,8 @@ export const DELETE_MEAL = gql`
 `;
 
 export const CREATE_WORKOUT = gql`
-  mutation CreateWorkout($name: String!, $duration: Int!, $intensityLevel: String!, $targetAudience: String!, $workoutTypeId: ID!, $description: String!, $exerciseIds: [ID!]) {
-    createWorkout(name: $name, duration: $duration, intensityLevel: $intensityLevel, targetAudience: $targetAudience, workoutTypeId: $workoutTypeId, description: $description, exerciseIds: $exerciseIds) {
+  mutation CreateWorkout($workoutInput: WorkoutInput!) {
+    createWorkout(workout: $workoutInput) {
       _id
       name
     }
@@ -151,8 +176,8 @@ export const CREATE_WORKOUT = gql`
 `;
 
 export const UPDATE_WORKOUT = gql`
-  mutation UpdateWorkout($_id: ID!, $name: String, $duration: Int, $intensityLevel: String, $targetAudience: String, $description: String) {
-    updateWorkout(_id: $_id, name: $name, duration: $duration, intensityLevel: $intensityLevel, targetAudience: $targetAudience, description: $description) {
+  mutation UpdateWorkout($_id: ID!, $workoutInput: WorkoutInput!) {
+    updateWorkout(_id: $_id, workout: $workoutInput) {
       success
       message
     }
@@ -162,6 +187,33 @@ export const UPDATE_WORKOUT = gql`
 export const DELETE_WORKOUT = gql`
   mutation DeleteWorkout($_id: ID!) {
     deleteWorkout(_id: $_id) {
+      success
+      message
+    }
+  }
+`;
+
+export const ADD_EXERCISE = gql`
+  mutation AddExercise($exerciseInput: ExerciseInput!) {
+    addExercise(exercise: $exerciseInput) {
+      _id
+      name
+    }
+  }
+`;
+
+export const UPDATE_EXERCISE = gql`
+  mutation UpdateExercise($_id: ID!, $exerciseInput: ExerciseInput!) {
+    updateExercise(_id: $_id, exercise: $exerciseInput) {
+      success
+      message
+    }
+  }
+`;
+
+export const DELETE_EXERCISE = gql`
+  mutation DeleteExercise($_id: ID!) {
+    deleteExercise(_id: $_id) {
       success
       message
     }

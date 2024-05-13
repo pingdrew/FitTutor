@@ -26,7 +26,8 @@ const mealSchema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
 });
 
 const Meal = mongoose.model('Meal', mealSchema);

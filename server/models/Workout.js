@@ -26,6 +26,7 @@ const workoutSchema = new Schema({
       ref: 'WorkoutType'
   },
   description: String,
+  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
   photo: [String],
   video: [String]
 });

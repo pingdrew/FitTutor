@@ -1,57 +1,54 @@
-import React, { useEffect } from 'react';
-import gsap from 'gsap';
-import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
-import { AppBar, Box, Toolbar, Typography, Button, Grid } from '@mui/material';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Nav.css'; // Make sure to import the CSS for styling
 
-function Nav() {
-  function handleLogout() {
-    Auth.logout();
-  }
+const NavBar = () => {
+    const [isOpen, setIsOpen] = useState(true);
 
-  useEffect(() => {
-    gsap.from('.nav-link', { opacity: 0, duration: 0.6, delay: 0.2, stagger: 0.5 });
-  }, []);
+    const toggleNav = () => {
+        setIsOpen(!isOpen);
+    };
 
-  return (
-    <AppBar position="static" style={{ backgroundColor: 'black' }}>
-      <Toolbar sx={{ my: 3 }}>
-        <Typography variant="h5" component={Link} to="/" style={{ textDecoration: 'none', color: 'inherit' }} className="nav-link">
-          Sapori D'Italia
-        </Typography>
-          <Grid style={{ marginLeft: 'auto' }} textAlign="center">
-            <Box mx={6}>
-              <Button component="a" href="#About" color="inherit" className="nav-link">
-                About
-              </Button>
-              <Button component="a" href="#Menu" color="inherit" className="nav-link">
-                Menu
-              </Button>
-              <Button component="a" href="#Contact" color="inherit" className="nav-link">
-                Contact
-              </Button>
-            </Box>
-          </Grid>
-        <Grid style={{ marginLeft: 'auto' }} className="nav-link">
-          {/* If loggedIn is true Logout button renders */}
-          {Auth.loggedIn() ? (
-            <Button color="inherit" onClick={handleLogout}>
-              Logout
-            </Button> ) : (
-            <>
-            {/* If loggedIn is false Login and Signup button render */}
-              <Button component={Link} to="/signup" color="inherit">
-                Signup
-              </Button>
-              <Button component={Link} to="/login" color="inherit">
-                Login
-              </Button>
-            </>
-          )}
-        </Grid>
-      </Toolbar>
-    </AppBar>
-  );
-}
+    return (
+        <div>
+            <div className="toggle-button" onClick={toggleNav}>
+                <i className={`fas ${isOpen ? 'fa-compress' : 'fa-expand'}`}></i>
+                <h1>FitTutor</h1>
+            </div>
+            <div className={`navbar ${isOpen ? 'open' : 'closed'}`}>
+                <div className="nav-items">
+                    <Link to="/home" className="nav-item">
+                        <i className="fas fa-home"></i>
+                        {isOpen && <span>Home</span>}
+                    </Link>
+                    <Link to="/explore" className="nav-item">
+                        <i className="fas fa-compass"></i>
+                        {isOpen && <span>Explore</span>}
+                    </Link>
+                    <Link to="/profile" className="nav-item">
+                        <i className="fas fa-user"></i>
+                        {isOpen && <span>Profile</span>}
+                    </Link>
+                    <Link to="/friends" className="nav-item">
+                        <i className="fas fa-users"></i>
+                        {isOpen && <span>Friends</span>}
+                    </Link>
+                    <Link to="/chat" className="nav-item">
+                        <i className="fas fa-comments"></i>
+                        {isOpen && <span>Chat</span>}
+                    </Link>
+                    <Link to="/saved" className="nav-item">
+                        <i className="fas fa-bookmark"></i>
+                        {isOpen && <span>Saved</span>}
+                    </Link>
+                    <Link id='exit' to="/" className="nav-item">
+                        <i className="fas fa-bookmark"></i>
+                        {isOpen && <span>Exit</span>}
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
+};
 
-export default Nav;
+export default NavBar;

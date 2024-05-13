@@ -106,6 +106,9 @@ export const GET_ALL_CONVERSATIONS = gql`
       lastMessage {
         _id
         messageContent
+        timeStamp
+        readStatus
+        attachments
       }
     }
   }
@@ -169,4 +172,3 @@ export const GET_ALL_EXERCISES = gql`
     }
   }
 `;
-

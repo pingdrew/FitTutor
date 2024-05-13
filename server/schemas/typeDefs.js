@@ -57,6 +57,7 @@ const typeDefs = gql`
     timeStamp: String!
     readStatus: Boolean
     attachments: [String]
+    reviews: [Review]
   }
 
   input MealInput {
@@ -82,6 +83,7 @@ const typeDefs = gql`
     sugars: Float
     vitamins: [String]
     minerals: [String]
+    reviews: [Review]
   }
 
   input IngredientInput {
@@ -113,6 +115,7 @@ const typeDefs = gql`
     difficultyLevel: String
     photo: [String]
     video: [String]
+    reviews: [Review]
   }
 
   type WorkoutType {
@@ -131,6 +134,7 @@ const typeDefs = gql`
     description: String
     photo: [String]
     video: [String]
+    reviews: [Review]
   }
 
   type Conversation {

@@ -28,6 +28,7 @@ const exerciseSchema = new mongoose.Schema({
       type: String,
       required: true
   },
+  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
   photo: [String],
   video: [String]
 });

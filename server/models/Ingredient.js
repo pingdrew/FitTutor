@@ -19,6 +19,7 @@ const ingredientSchema = new Schema({
     fats: Number,
     fibers: Number,
     sugars: Number,
+    reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
     vitamins: [String],
     minerals: [String]
 });
