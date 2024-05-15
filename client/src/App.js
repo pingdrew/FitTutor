@@ -19,7 +19,7 @@ import SavedPage from './pages/Home/SavedPage';
 import ShopPage from './pages/Home/ShopPage';
 import FriendsPage from './pages/Home/FriendsPage';
 import ChatPage from './pages/Home/ChatPage';
-// FRONT END WEBSITE ROUTES ^^
+import ProtectedRoute from './ProtectedRoute';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,49 +45,24 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/saved" element={<SavedPage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/friends" element={<FriendsPage />} />
+            <Route path="/chat" element={<ChatPage />} />
+          </Route>
 
-          {/* FRONTEND WEBSITE ROUTES vv */}
-          <Route
-            path="/"
-            element={<Landing />}
-          />
-          <Route
-            path="/login"
-            element={<Login />}
-          />
-          <Route
-            path="/signup"
-            element={<Signup />}
-          />
-          <Route
-            path="/home"
-            element={<HomePage />}
-          />
-          <Route
-            path="/explore"
-            element={<ExplorePage />}
-          />
-          <Route
-            path="/profile"
-            element={<ProfilePage />}
-          />
-          <Route
-            path="/saved"
-            element={<SavedPage />}
-          />
-          <Route
-            path="/shop"
-            element={<ShopPage />}
-          />
-          <Route
-            path="/friends"
-            element={<FriendsPage />}
-          />
-          <Route
-            path="/chat"
-            element={<ChatPage />}
-          />
+          {/* NoMatch route */}
+          <Route path="*" element={<NoMatch />} />
         </Routes>
       </Router>
     </ApolloProvider>

@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Date
+
   type Person {
     _id: ID!
     username: String!
@@ -20,54 +22,68 @@ const typeDefs = gql`
 
   type Review {
     id: ID!
-    reviewer_Id: ID!
+    reviewer: Person!
     reviewedItem_Id: ID!
     onModel: String!
     messageContent: String
-    timeStamp: String
+    timeStamp: Date
     rating: Float
-  }  
+  }
 
   input ReviewInput {
     reviewer_Id: ID!
     reviewedItem_Id: ID!
     onModel: String!
     messageContent: String
-    timeStamp: String
+    timeStamp: Date
     rating: Float
   }
 
   type Message {
     _id: ID!
-    conversationId: Conversation!
-    sender_Id: Person!
-    receiver_Id: Person!
+    conversation: Conversation!
+    sender: Person!
+    receiver: Person!
     messageContent: String!
-    timeStamp: String!
+    timeStamp: Date!
+    readStatus: Boolean
+    attachments: [String]
+  }
+
+  input MessageInput {
+    conversationId: ID
+    sender_Id: ID
+    receiver_Id: ID
+    messageContent: String!
+    timeStamp: Date!
     readStatus: Boolean
     attachments: [String]
   }
 
   type Meal {
     _id: ID!
-    conversationId: ID
-    sender_Id: Person
-    receiver_Id: Person
-    messageContent: String!
-    timeStamp: String!
-    readStatus: Boolean
-    attachments: [String]
+    name: String!
+    description: String
+    ingredients: [Ingredient]
+    calories: Float
+    proteins: Float
+    carbohydrates: Float
+    fats: Float
+    fibers: Float
+    sugars: Float
     reviews: [Review]
   }
 
   input MealInput {
-    conversationId: ID
-    sender_Id: ID
-    receiver_Id: ID
-    messageContent: String!
-    timeStamp: String!
-    readStatus: Boolean
-    attachments: [String]
+    name: String!
+    description: String
+    ingredients: [IngredientInput]
+    calories: Float
+    proteins: Float
+    carbohydrates: Float
+    fats: Float
+    fibers: Float
+    sugars: Float
   }
 
   type Ingredient {
@@ -141,12 +157,17 @@ const typeDefs = gql`
     _id: ID!
     participants: [Person]
     lastMessage: Message
-    lastUpdated: String
+    lastUpdated: Date
   }
 
   type MutationResponse {
     success: Boolean!
     message: String!
+  }
+
+  type Auth {
+    token: String!
+    person: Person
   }
 
   type Query {
@@ -173,7 +194,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addPerson(username: String!, email: String!, password: String!): Person
+    login(email: String!, password: String!): Auth
+    addPerson(username: String!, email: String!, password: String!): Auth
     updatePerson(_id: ID!, email: String, password: String): Person
     deletePerson(_id: ID!): MutationResponse
 
@@ -181,7 +203,7 @@ const typeDefs = gql`
     updateReview(id: ID!, review: ReviewInput!): Review
     deleteReview(id: ID!): MutationResponse
 
-    sendMessage(sender_Id: ID!, receiver_Id: ID!, messageContent: String!): Message
+    sendMessage(messageInput: MessageInput!): Message
     updateMessage(_id: ID!, readStatus: Boolean): Message
     deleteMessage(_id: ID!): MutationResponse
 

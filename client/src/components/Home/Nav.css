@@ -3,26 +3,18 @@
 }
 
 .navbar {
-  width: 200px;
   height: 100vh;
   background-color:#f0f0f0;
   color:#f0f0f0;
-  transition: width 0.3s ease;
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   overflow: hidden;
 }
 
-.navbar.closed {
-  width: 0; /* Adjust this value to match the width of your navbar */
-}
-
-.navbar.open {
-  width: 200px;
-}
 
 .toggle-button {
+  padding-right: 20px;
   background-color:#333;
   display: flex;
   align-items: center;
@@ -44,12 +36,28 @@
   width: 100%;
 }
 
+.navbar.closed {
+  width: 0%; /* Adjust this value to match the width of your navbar */
+}
+
+.navbar.open {
+  width: 20%;
+}
+
 .nav-item:hover,
 .nav-item:hover span {
   color: #f0f0f0;
 }
 
 .nav-item:hover {
-  color: #f0f0f0;
   background-color: #333;
+}
+
+@media screen and (max-width: 768px) {
+  .toggle-button {
+    justify-content: flex-end;
+  }
+  .navbar.open {
+    width: 50%;
+  }
 }

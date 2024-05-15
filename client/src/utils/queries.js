@@ -41,20 +41,6 @@ export const GET_ALL_PERSONS = gql`
   }
 `;
 
-export const GET_PERSON_BY_ID = gql`
-  query PersonById($_id: ID!) {
-    personById(_id: $_id) {
-      _id
-      username
-      email
-      phone
-      age
-      about
-      role
-    }
-  }
-`;
-
 export const GET_ALL_REVIEWS = gql`
   query GetAllReviews {
     allReviews {
@@ -169,6 +155,144 @@ export const GET_ALL_EXERCISES = gql`
       difficultyLevel
       photo
       video
+    }
+  }
+`;
+
+export const GET_ALL_EXERCISE_TYPES = gql`
+  query GetAllExerciseTypes {
+    allExerciseTypes {
+      _id
+      name
+    }
+  }
+`;
+
+export const GET_EXERCISE_TYPE_BY_ID = gql`
+  query GetExerciseTypeById($_id: ID!) {
+    exerciseTypeById(_id: $_id) {
+      _id
+      name
+    }
+  }
+`;
+
+// Ingredient Queries
+export const GET_ALL_INGREDIENTS = gql`
+  query GetAllIngredients {
+    allIngredients {
+      _id
+      name
+      description
+      nutrients {
+        name
+        amount
+      }
+    }
+  }
+`;
+
+export const GET_INGREDIENT_BY_ID = gql`
+  query GetIngredientById($_id: ID!) {
+    ingredientById(_id: $_id) {
+      _id
+      name
+      description
+      nutrients {
+        name
+        amount
+      }
+    }
+  }
+`;
+
+// Meal Queries
+export const GET_MEAL_BY_ID = gql`
+  query GetMealById($_id: ID!) {
+    mealById(_id: $_id) {
+      _id
+      name
+      ingredients {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+// Message Queries
+export const GET_MESSAGE_BY_ID = gql`
+  query GetMessageById($_id: ID!) {
+    messageById(_id: $_id) {
+      _id
+      messageContent
+      timeStamp
+      readStatus
+      attachments
+    }
+  }
+`;
+
+// Person Queries
+export const GET_PERSON_BY_ID = gql`
+  query GetPersonById($_id: ID!) {
+    personById(_id: $_id) {
+      _id
+      username
+      email
+      phone
+      age
+      about
+      role
+    }
+  }
+`;
+
+// Review Queries
+export const GET_REVIEW_BY_ID = gql`
+  query GetReviewById($_id: ID!) {
+    reviewById(_id: $_id) {
+      _id
+      messageContent
+      timeStamp
+      rating
+    }
+  }
+`;
+
+// Workout Queries
+export const GET_WORKOUT_BY_ID = gql`
+  query GetWorkoutById($_id: ID!) {
+    workoutById(_id: $_id) {
+      _id
+      name
+      duration
+      intensityLevel
+      targetAudience
+      workoutType {
+        _id
+        name
+      }
+      description
+    }
+  }
+`;
+
+// WorkoutType Queries
+export const GET_ALL_WORKOUT_TYPES = gql`
+  query GetAllWorkoutTypes {
+    allWorkoutTypes {
+      _id
+      name
+    }
+  }
+`;
+
+export const GET_WORKOUT_TYPE_BY_ID = gql`
+  query GetWorkoutTypeById($_id: ID!) {
+    workoutTypeById(_id: $_id) {
+      _id
+      name
     }
   }
 `;

@@ -14,7 +14,7 @@ export const SIGN_UP = gql`
 `;
 
 export const LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
+  mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
     }
@@ -214,6 +214,108 @@ export const UPDATE_EXERCISE = gql`
 export const DELETE_EXERCISE = gql`
   mutation DeleteExercise($_id: ID!) {
     deleteExercise(_id: $_id) {
+      success
+      message
+    }
+  }
+`;
+export const GET_ALL_EXERCISE_TYPES = gql`
+  query GetAllExerciseTypes {
+    allExerciseTypes {
+      _id
+      name
+    }
+  }
+`;
+
+export const GET_EXERCISE_TYPE_BY_ID = gql`
+  query GetExerciseTypeById($_id: ID!) {
+    exerciseTypeById(_id: $_id) {
+      _id
+      name
+    }
+  }
+`;
+
+export const GET_ALL_INGREDIENTS = gql`
+  query GetAllIngredients {
+    allIngredients {
+      _id
+      name
+      description
+      calories
+      nutrients {
+        name
+        amount
+      }
+    }
+  }
+`;
+
+export const GET_INGREDIENT_BY_ID = gql`
+  query GetIngredientById($_id: ID!) {
+    ingredientById(_id: $_id) {
+      _id
+      name
+      description
+      calories
+      nutrients {
+        name
+        amount
+      }
+    }
+  }
+`;
+
+// Adding missing mutations for Ingredients and ExerciseTypes
+export const ADD_EXERCISE_TYPE = gql`
+  mutation AddExerciseType($name: String!) {
+    addExerciseType(name: $name) {
+      _id
+      name
+    }
+  }
+`;
+
+export const UPDATE_EXERCISE_TYPE = gql`
+  mutation UpdateExerciseType($_id: ID!, $name: String!) {
+    updateExerciseType(_id: $_id, name: $name) {
+      success
+      message
+    }
+  }
+`;
+
+export const DELETE_EXERCISE_TYPE = gql`
+  mutation DeleteExerciseType($_id: ID!) {
+    deleteExerciseType(_id: $_id) {
+      success
+      message
+    }
+  }
+`;
+
+export const ADD_INGREDIENT = gql`
+  mutation AddIngredient($name: String!, $description: String, $calories: Int, $nutrients: [NutrientInput]) {
+    addIngredient(name: $name, description: $description, calories: $calories, nutrients: $nutrients) {
+      _id
+      name
+    }
+  }
+`;
+
+export const UPDATE_INGREDIENT = gql`
+  mutation UpdateIngredient($_id: ID!, $name: String, $description: String, $calories: Int, $nutrients: [NutrientInput]) {
+    updateIngredient(_id: $_id, name: $name, description: $description, calories: $calories, nutrients: $nutrients) {
+      success
+      message
+    }
+  }
+`;
+
+export const DELETE_INGREDIENT = gql`
+  mutation DeleteIngredient($_id: ID!) {
+    deleteIngredient(_id: $_id) {
       success
       message
     }

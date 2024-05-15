@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
-
-const LOGIN = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-    }
-  }
-`;
+import { LOGIN } from '../../utils/mutations';
 
 function Login() {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -22,7 +15,7 @@ function Login() {
         variables: { email: formState.email, password: formState.password }
       });
       const token = data.login.token;
-      Auth.login(token); // This should store the token in localStorage and perhaps change user state
+      Auth.login(token); // Store the token and redirect
     } catch (e) {
       console.error(e);
     }
@@ -52,6 +45,7 @@ function Login() {
             id="email"
             value={formState.email}
             onChange={handleChange}
+            autoComplete="email"
           />
         </div>
         <div>
@@ -63,6 +57,7 @@ function Login() {
             id="pwd"
             value={formState.password}
             onChange={handleChange}
+            autoComplete="current-password"
           />
         </div>
         {error && (

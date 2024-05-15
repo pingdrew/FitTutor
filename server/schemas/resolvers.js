@@ -1,5 +1,4 @@
 const { AuthenticationError } = require('apollo-server-express');
-console.log(__dirname);
 const { Person, Review, Message, Meal, Ingredient, Exercise, ExerciseType, Workout, WorkoutType, Conversation } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -27,54 +26,67 @@ const resolvers = {
     workoutTypeById: (_, { _id }) => WorkoutType.findById(_id),
   },
   Mutation: {
-    addPerson: (_, { username, email, password }) => new Person({ username, email, password }).save(),
-    updatePerson: (_, { _id, email, password }) => Person.findByIdAndUpdate(_id, { email, password }, { new: true }),
-    deletePerson: async (_, { _id }) => {
-      await Person.findByIdAndDelete(_id);
-      return { success: true, message: "Person deleted successfully" };
+    login: async (parent, { email, password }) => {
+      const person = await Person.findOne({ email });
+
+      if (!person) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const correctPw = await person.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(person);
+      return { token, person };
     },
-    addReview: async (_, { review }) => new Review(review).save(),
-    updateReview: async (_, { id, review }) => Review.findByIdAndUpdate(id, review, { new: true }),
-    deleteReview: async (_, { id }) => {
-      await Review.findByIdAndRemove(id);
-      return { success: true, message: "Review deleted successfully" };
+    addPerson: async (_, { username, email, password }) => {
+      const person = new Person({ username, email, password });
+      await person.save();
+      const token = signToken(person);
+      return { token, person };
     },
-    sendMessage: (_, { sender_Id, receiver_Id, messageContent }) => new Message({ sender_Id, receiver_Id, messageContent }).save(),
-    updateMessage: (_, { _id, readStatus }) => Message.findByIdAndUpdate(_id, { readStatus }, { new: true }),
-    deleteMessage: async (_, { _id }) => {
-      await Message.findByIdAndDelete(_id);
-      return { success: true, message: "Message deleted successfully" };
-    },
+    updatePerson: (_, { _id, email, password, phone, age, about, role }) => 
+      Person.findByIdAndUpdate(_id, { email, password, phone, age, about, role }, { new: true }),
+    deletePerson: (_, { _id }) => 
+      Person.findByIdAndDelete(_id).then(() => ({ success: true, message: "Person deleted successfully" })),
+    addReview: (_, { review }) => new Review(review).save(),
+    updateReview: (_, { id, review }) => 
+      Review.findByIdAndUpdate(id, review, { new: true }),
+    deleteReview: (_, { id }) => 
+      Review.findByIdAndRemove(id).then(() => ({ success: true, message: "Review deleted successfully" })),
+    sendMessage: (_, { messageInput }) => new Message(messageInput).save(),
+    updateMessage: (_, { _id, readStatus }) => 
+      Message.findByIdAndUpdate(_id, { readStatus }, { new: true }),
+    deleteMessage: (_, { _id }) => 
+      Message.findByIdAndDelete(_id).then(() => ({ success: true, message: "Message deleted successfully" })),
     addMeal: (_, { meal }) => new Meal(meal).save(),
-    updateMeal: (_, { _id, meal }) => Meal.findByIdAndUpdate(_id, meal, { new: true }),
-    deleteMeal: async (_, { _id }) => {
-      await Meal.findByIdAndDelete(_id);
-      return { success: true, message: "Meal deleted successfully" };
-    },
+    updateMeal: (_, { _id, meal }) => 
+      Meal.findByIdAndUpdate(_id, meal, { new: true }),
+    deleteMeal: (_, { _id }) => 
+      Meal.findByIdAndDelete(_id).then(() => ({ success: true, message: "Meal deleted successfully" })),
     addIngredient: (_, { ingredient }) => new Ingredient(ingredient).save(),
-    updateIngredient: (_, { _id, ingredient }) => Ingredient.findByIdAndUpdate(_id, ingredient, { new: true }),
-    deleteIngredient: async (_, { _id }) => {
-      await Ingredient.findByIdAndDelete(_id);
-      return { success: true, message: "Ingredient deleted successfully" };
-    },
+    updateIngredient: (_, { _id, ingredient }) => 
+      Ingredient.findByIdAndUpdate(_id, ingredient, { new: true }),
+    deleteIngredient: (_, { _id }) => 
+      Ingredient.findByIdAndDelete(_id).then(() => ({ success: true, message: "Ingredient deleted successfully" })),
     createConversation: (_, { participants }) => new Conversation({ participants }).save(),
-    updateConversation: (_, { _id, lastMessage }) => Conversation.findByIdAndUpdate(_id, { lastMessage, lastUpdated: new Date() }, { new: true }),
-    deleteConversation: async (_, { _id }) => {
-      await Conversation.findByIdAndDelete(_id);
-      return { success: true, message: "Conversation deleted successfully" };
-    },
+    updateConversation: (_, { _id, lastMessage }) => 
+      Conversation.findByIdAndUpdate(_id, { lastMessage, lastUpdated: new Date() }, { new: true }),
+    deleteConversation: (_, { _id }) => 
+      Conversation.findByIdAndDelete(_id).then(() => ({ success: true, message: "Conversation deleted successfully" })),
     addExerciseType: (_, { name }) => new ExerciseType({ name }).save(),
-    updateExerciseType: (_, { _id, name }) => ExerciseType.findByIdAndUpdate(_id, { name }, { new: true }),
-    deleteExerciseType: async (_, { _id }) => {
-      await ExerciseType.findByIdAndDelete(_id);
-      return { success: true, message: "Exercise type deleted successfully" };
-    },
+    updateExerciseType: (_, { _id, name }) => 
+      ExerciseType.findByIdAndUpdate(_id, { name }, { new: true }),
+    deleteExerciseType: (_, { _id }) => 
+      ExerciseType.findByIdAndDelete(_id).then(() => ({ success: true, message: "Exercise type deleted successfully" })),
     addWorkoutType: (_, { name }) => new WorkoutType({ name }).save(),
-    updateWorkoutType: (_, { _id, name }) => WorkoutType.findByIdAndUpdate(_id, { name }, { new: true }),
-    deleteWorkoutType: async (_, { _id }) => {
-      await WorkoutType.findByIdAndDelete(_id);
-      return { success: true, message: "Workout type deleted successfully" };
-    },
+    updateWorkoutType: (_, { _id, name }) => 
+      WorkoutType.findByIdAndUpdate(_id, { name }, { new: true }),
+    deleteWorkoutType: (_, { _id }) => 
+      WorkoutType.findByIdAndDelete(_id).then(() => ({ success: true, message: "Workout type deleted successfully" })),
   }
 };
 
