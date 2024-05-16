@@ -1,6 +1,5 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Typography, Grid } from '@mui/material';
 import badass from "../../assets/badass.jpg";
 import React, { useRef, useEffect } from 'react';
 
