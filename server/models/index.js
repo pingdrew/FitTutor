@@ -1,8 +1,12 @@
-const Employee = require('./Employee');
-const Menu = require('./Menu');
-const Role = require('./Role');
-const Shift = require('./Shift');
-const Table = require('./Table');
-const Category = require('./Category');
+const Person = require('./Person');
+const Review = require('./Review');
+const Message = require('./Message');
+const Meal = require('./Meal');
+const Ingredient = require('./Ingredient');
+const Exercise = require('./Exercise');
+const ExerciseType = require('./ExerciseType');
+const Workout = require('./Workout');
+const WorkoutType = require('./WorkoutType');
+const Conversation = require('./Conversation');
 
-module.exports = { Employee, Shift, Menu, Role, Table, Category};
+module.exports = { Person, Review, Message, Meal, Ingredient, Exercise, ExerciseType, Workout, WorkoutType, Conversation };

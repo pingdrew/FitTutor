@@ -31,7 +31,7 @@ class AuthService {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
 
-    window.location.assign('/pos/shift');
+    window.location.assign('/home');
   }
 
   logout() {
@@ -42,4 +42,6 @@ class AuthService {
   }
 }
 
-export default new AuthService();
+const authServiceInstance = new AuthService();
+
+export default authServiceInstance;

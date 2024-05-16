@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../../components/Home/Nav";
 
-const HomePage = () => {
+const FriendsPage = () => {
   return (
     <div className="home">
       <Nav />
@@ -9,4 +9,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default FriendsPage;

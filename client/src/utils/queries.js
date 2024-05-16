@@ -1,219 +1,326 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_EMPLOYEE = gql`
-query Employee($id: ID!) {
-  employee(_id: $id) {
-    _id
-    firstName
-    lastName
-    email
-    password
-    roles {
+export const GET_ME = gql`
+  query Me {
+    me {
       _id
-      name
-      hourlyRate
-    }
-    tables {
-      _id
-      tableNum
-      orderStatus
-      tip
-      date
-      tableStatus
-      order {
+      username
+      email
+      phone
+      age
+      about
+      role
+      specializations
+      certifications
+      friends {
         _id
-        item
-        price
-        ingredients
-        inStock
-        quantity
-        category {
-          _id
-          name
-        }
+        username
+        email
+      }
+      reviews {
+        _id
+        messageContent
+        timeStamp
+        rating
       }
     }
-    shifts {
+  }
+`;
+
+export const GET_ALL_PERSONS = gql`
+  query GetAllPersons {
+    allPersons {
       _id
-      date
-      currentShift
-      clockedIn
-      clockIn
-      clockOut
-      breakStart
-      breakEnd
+      username
+      email
+      phone
+      age
+      about
+      role
     }
   }
-}`;
+`;
 
-export const QUERY_MENU_ITEM = gql `
-query MenuItem($id: ID!) {
-  menuItem(_id: $id) {
-    _id
-    item
-    price
-    ingredients
-    inStock
-    quantity
-    category {
+export const GET_ALL_REVIEWS = gql`
+  query GetAllReviews {
+    allReviews {
+      _id
+      messageContent
+      timeStamp
+      rating
+      sender_Id {
+        _id
+        username
+      }
+      receiver_Id {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const GET_ALL_MESSAGES = gql`
+  query GetAllMessages {
+    allMessages {
+      _id
+      messageContent
+      timeStamp
+      readStatus
+      attachments
+      sender_Id {
+        _id
+        username
+      }
+      receiver_Id {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const GET_ALL_CONVERSATIONS = gql`
+  query GetAllConversations {
+    allConversations {
+      _id
+      lastUpdated
+      participants {
+        _id
+        username
+      }
+      lastMessage {
+        _id
+        messageContent
+        timeStamp
+        readStatus
+        attachments
+      }
+    }
+  }
+`;
+
+export const GET_ALL_MEALS = gql`
+  query GetAllMeals {
+    allMeals {
+      _id
+      name
+      description
+      ingredients {
+        _id
+        ingredientName
+      }
+      calories
+      proteins
+      carbohydrates
+      fats
+      fibers
+      sugars
+      reviews {
+        messageContent
+        rating
+      }
+    }
+  }
+`;
+
+export const GET_ALL_WORKOUTS = gql`
+  query GetAllWorkouts {
+    allWorkouts {
+      _id
+      name
+      description
+      duration
+      intensityLevel
+      targetAudience
+      workoutType {
+        name
+      }
+      exercises {
+        _id
+        name
+      }
+      reviews {
+        messageContent
+        rating
+      }
+    }
+  }
+`;
+
+export const GET_ALL_EXERCISES = gql`
+  query GetAllExercises {
+    allExercises {
+      _id
+      name
+      description
+      photo
+      video
+      type {
+        name
+      }
+      targetedMuscles
+      equipmentNeeded
+      difficultyLevel
+      reviews {
+        messageContent
+        rating
+      }
+    }
+  }
+`;
+
+export const GET_ALL_EXERCISE_TYPES = gql`
+  query GetAllExerciseTypes {
+    allExerciseTypes {
       _id
       name
     }
   }
-}`;
+`;
 
-export const QUERY_TABLE = gql`
-query Table($id: ID!) {
-  table(_id: $id) {
-    _id
-    tableNum
-    orderStatus
-    tip
-    date
-    tableStatus
-    order {
+export const GET_EXERCISE_TYPE_BY_ID = gql`
+  query GetExerciseTypeById($_id: ID!) {
+    exerciseTypeById(_id: $_id) {
       _id
-      item
-      price
-      ingredients
-      inStock
+      name
+    }
+  }
+`;
+
+export const GET_ALL_INGREDIENTS = gql`
+  query GetAllIngredients {
+    allIngredients {
+      _id
+      ingredientName
+      unit
       quantity
-      category {
+      calories
+      proteins
+      carbohydrates
+      fats
+      fibers
+      sugars
+      vitamins
+      minerals
+      reviews {
+        messageContent
+        rating
+      }
+    }
+  }
+`;
+
+export const GET_INGREDIENT_BY_ID = gql`
+  query GetAllIngredients {
+    allIngredients {
+      _id
+      ingredientName
+      unit
+      quantity
+      calories
+      proteins
+      carbohydrates
+      fats
+      fibers
+      sugars
+      vitamins
+      minerals
+      reviews {
+        messageContent
+        rating
+      }
+    }
+  }
+`;
+
+// Meal Queries
+export const GET_MEAL_BY_ID = gql`
+  query GetMealById($_id: ID!) {
+    mealById(_id: $_id) {
+      _id
+      name
+      ingredients {
         _id
         name
       }
     }
   }
-}`;
+`;
 
-export const QUERY_ALL_EMPLOYEES = gql`
-query Employees {
-  employees {
-    _id
-    firstName
-    lastName
-    email
-    password
-    roles {
+// Message Queries
+export const GET_MESSAGE_BY_ID = gql`
+  query GetMessageById($_id: ID!) {
+    messageById(_id: $_id) {
       _id
-      name
-      hourlyRate
-    }
-    tables {
-      _id
-      tableNum
-      orderStatus
-      tip
-      date
-      tableStatus
-      order {
-        _id
-        item
-        price
-        ingredients
-        inStock
-        quantity
-        category {
-          _id
-          name
-        }
-      }
-    }
-    shifts {
-      _id
-      date
-      currentShift
-      clockedIn
-      clockIn
-      clockOut
-      breakStart
-      breakEnd
+      messageContent
+      timeStamp
+      readStatus
+      attachments
     }
   }
-}`;
+`;
 
-export const QUERY_ALL_MENU = gql`
-query MenuItems {
-  menuItems {
-    _id
-    item
-    price
-    ingredients
-    inStock
-    quantity
-    category {
+// Person Queries
+export const GET_PERSON_BY_ID = gql`
+  query GetPersonById($_id: ID!) {
+    personById(_id: $_id) {
       _id
-      name
+      username
+      email
+      phone
+      age
+      about
+      role
     }
   }
-}`;
+`;
 
-export const QUERY_ALL_TABLES = gql`
-query Table {
-  tables {
-    _id
-    tableNum
-    orderStatus
-    tip
-    date
-    tableStatus
-    order {
+// Review Queries
+export const GET_REVIEW_BY_ID = gql`
+  query GetReviewById($_id: ID!) {
+    reviewById(_id: $_id) {
       _id
-      item
-      price
-      ingredients
-      inStock
-      quantity
-      category {
+      messageContent
+      timeStamp
+      rating
+    }
+  }
+`;
+
+// Workout Queries
+export const GET_WORKOUT_BY_ID = gql`
+  query GetWorkoutById($_id: ID!) {
+    workoutById(_id: $_id) {
+      _id
+      name
+      duration
+      intensityLevel
+      targetAudience
+      workoutType {
         _id
         name
       }
+      description
     }
   }
-}`;
+`;
 
-export const ME = gql`query Query {
-  me {
-    _id
-    firstName
-    lastName
-    email
-    password
-    posID
-    roles {
+// WorkoutType Queries
+export const GET_ALL_WORKOUT_TYPES = gql`
+  query GetAllWorkoutTypes {
+    allWorkoutTypes {
       _id
       name
-      hourlyRate
-    }
-    tables {
-      _id
-      tableNum
-      orderStatus
-      tip
-      date
-      tableStatus
-      order {
-        _id
-        item
-        price
-        ingredients
-        inStock
-        quantity
-        category {
-          _id
-          name
-        }
-      }
-    }
-    shifts {
-      _id
-      date
-      currentShift
-      clockedIn
-      clockIn
-      clockOut
-      breakStart
-      breakEnd
     }
   }
-}`
+`;
+
+export const GET_WORKOUT_TYPE_BY_ID = gql`
+  query GetWorkoutTypeById($_id: ID!) {
+    workoutTypeById(_id: $_id) {
+      _id
+      name
+    }
+  }
+`;

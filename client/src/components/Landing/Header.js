@@ -34,10 +34,10 @@ const Header = () => {
           FIT<span style={highlightStyle}>TUTOR</span>
         </h1>
         <div>
-          <button href="#">About</button>
-          <button href="#">Join</button>
-          <button href="#">Home</button>
-          <button href="#">Contact</button>
+          <a href="#About"><button>About</button></a>
+          <a href="#Contact"><button>Contact</button></a>
+          <a href="/signup"><button>Join</button></a>
+          <a href="/login"><button>Home</button></a>
         </div>
       </header>
     </div>
