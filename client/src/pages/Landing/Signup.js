@@ -1,34 +1,23 @@
 import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
-
-const SIGN_UP = gql`
-  mutation signUp($email: String!, $password: String!, $username: String!) {
-    signUp(email: $email, password: $password, username: $username) {
-      token
-    }
-  }
-`;
+import { ADD_PERSON } from '../../utils/mutations';
 
 function Signup() {
-  const [formState, setFormState] = useState({
-    email: '',
-    password: '',
-    username: ''
-  });
-  const [signUp, { error }] = useMutation(SIGN_UP);
+  const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+  const [addPerson, { error }] = useMutation(ADD_PERSON);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await signUp({
-        variables: formState
+      const { data } = await addPerson({
+        variables: { ...formState }
       });
-      const token = data.signUp.token;
-      Auth.login(token);
+      const token = data.addPerson.token;
+      Auth.login(token); // Store the token and redirect
     } catch (e) {
-      console.error("Signup error:", e);
+      console.error(e);
     }
   };
 
@@ -36,20 +25,21 @@ function Signup() {
     const { name, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
     });
   };
 
   return (
     <div className="container">
+      <Link to="/login"><button>Login</button></Link>
       <Link to="/"><button>Back</button></Link>
 
-      <h2>Sign Up</h2>
+      <h2>Signup</h2>
       <form onSubmit={handleFormSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
           <input
-            placeholder="Username"
+            placeholder="Your username"
             name="username"
             type="text"
             id="username"
@@ -58,7 +48,7 @@ function Signup() {
           />
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email address:</label>
           <input
             placeholder="youremail@test.com"
             name="email"
@@ -66,6 +56,7 @@ function Signup() {
             id="email"
             value={formState.email}
             onChange={handleChange}
+            autoComplete="email"
           />
         </div>
         <div>
@@ -77,15 +68,16 @@ function Signup() {
             id="pwd"
             value={formState.password}
             onChange={handleChange}
+            autoComplete="current-password"
           />
         </div>
         {error && (
           <div>
-            <p className="error-text">Error signing up. Please try again.</p>
+            <p className="error-text">Signup failed</p>
           </div>
         )}
         <div>
-          <button type="submit">Sign Up</button>
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>

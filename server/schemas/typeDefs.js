@@ -20,6 +20,11 @@ const typeDefs = gql`
     friends: [Person]
   }
 
+  type Auth {
+    token: String!
+    person: Person
+  }
+
   type Review {
     id: ID!
     reviewer: Person!
@@ -35,7 +40,7 @@ const typeDefs = gql`
     reviewedItem_Id: ID!
     onModel: String!
     messageContent: String
-    timeStamp: Date
+    timeStamp: Date!
     rating: Float
   }
 
@@ -165,9 +170,11 @@ const typeDefs = gql`
     message: String!
   }
 
-  type Auth {
-    token: String!
-    person: Person
+  type AllResults {
+    exercises: [Exercise]
+    workouts: [Workout]
+    ingredients: [Ingredient]
+    meals: [Meal]
   }
 
   type Query {
@@ -191,6 +198,7 @@ const typeDefs = gql`
     exerciseTypeById(_id: ID!): ExerciseType
     allWorkoutTypes: [WorkoutType]
     workoutTypeById(_id: ID!): WorkoutType  
+    getAllResults: AllResults
   }
 
   type Mutation {

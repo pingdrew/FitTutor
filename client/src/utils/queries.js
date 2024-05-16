@@ -104,16 +104,21 @@ export const GET_ALL_MEALS = gql`
   query GetAllMeals {
     allMeals {
       _id
-      messageContent
-      timeStamp
-      readStatus
-      sender_Id {
+      name
+      description
+      ingredients {
         _id
-        username
+        ingredientName
       }
-      receiver_Id {
-        _id
-        username
+      calories
+      proteins
+      carbohydrates
+      fats
+      fibers
+      sugars
+      reviews {
+        messageContent
+        rating
       }
     }
   }
@@ -124,17 +129,20 @@ export const GET_ALL_WORKOUTS = gql`
     allWorkouts {
       _id
       name
+      description
       duration
       intensityLevel
       targetAudience
       workoutType {
-        _id
         name
       }
-      description
       exercises {
         _id
         name
+      }
+      reviews {
+        messageContent
+        rating
       }
     }
   }
@@ -145,16 +153,19 @@ export const GET_ALL_EXERCISES = gql`
     allExercises {
       _id
       name
+      description
+      photo
+      video
       type {
-        _id
         name
       }
       targetedMuscles
       equipmentNeeded
-      description
       difficultyLevel
-      photo
-      video
+      reviews {
+        messageContent
+        rating
+      }
     }
   }
 `;
@@ -177,30 +188,47 @@ export const GET_EXERCISE_TYPE_BY_ID = gql`
   }
 `;
 
-// Ingredient Queries
 export const GET_ALL_INGREDIENTS = gql`
   query GetAllIngredients {
     allIngredients {
       _id
-      name
-      description
-      nutrients {
-        name
-        amount
+      ingredientName
+      unit
+      quantity
+      calories
+      proteins
+      carbohydrates
+      fats
+      fibers
+      sugars
+      vitamins
+      minerals
+      reviews {
+        messageContent
+        rating
       }
     }
   }
 `;
 
 export const GET_INGREDIENT_BY_ID = gql`
-  query GetIngredientById($_id: ID!) {
-    ingredientById(_id: $_id) {
+  query GetAllIngredients {
+    allIngredients {
       _id
-      name
-      description
-      nutrients {
-        name
-        amount
+      ingredientName
+      unit
+      quantity
+      calories
+      proteins
+      carbohydrates
+      fats
+      fibers
+      sugars
+      vitamins
+      minerals
+      reviews {
+        messageContent
+        rating
       }
     }
   }

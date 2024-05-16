@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -19,7 +19,8 @@ import SavedPage from './pages/Home/SavedPage';
 import ShopPage from './pages/Home/ShopPage';
 import FriendsPage from './pages/Home/FriendsPage';
 import ChatPage from './pages/Home/ChatPage';
-import ProtectedRoute from './ProtectedRoute';
+
+import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,28 +41,25 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const ProtectedRoute = ({ children }) => {
+  return Auth.loggedIn() ? children : <Navigate to="/login" />;
+};
+
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <Routes>
-          {/* Public routes */}
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-
-          {/* Protected routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/explore" element={<ExplorePage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/saved" element={<SavedPage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/friends" element={<FriendsPage />} />
-            <Route path="/chat" element={<ChatPage />} />
-          </Route>
-
-          {/* NoMatch route */}
+          <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route path="/explore" element={<ProtectedRoute><ExplorePage /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route path="/saved" element={<ProtectedRoute><SavedPage /></ProtectedRoute>} />
+          <Route path="/shop" element={<ProtectedRoute><ShopPage /></ProtectedRoute>} />
+          <Route path="/friends" element={<ProtectedRoute><FriendsPage /></ProtectedRoute>} />
+          <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
       </Router>

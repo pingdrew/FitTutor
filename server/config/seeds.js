@@ -20,7 +20,7 @@ db.once('open', async () => {
 
   // Sample Persons
   const persons = await Person.insertMany([
-    { username: 'drew', email: 'drew@gmail.com', password: 'nothappenin', role: 'Admin' },
+    { username: 'dreeew', email: 'dreeew@gmail.com', password: 'dreeew', role: 'Admin' },
     { username: 'JaneDoe', email: 'jane@example.com', password: 'password123', role: 'User' }
   ]);
   console.log('Person seeding complete!');

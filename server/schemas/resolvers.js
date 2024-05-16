@@ -1,40 +1,51 @@
+const { Person, Exercise, Workout, Ingredient, Meal, Review, Message, Conversation, ExerciseType, WorkoutType } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
-const { Person, Review, Message, Meal, Ingredient, Exercise, ExerciseType, Workout, WorkoutType, Conversation } = require('../models');
 const { signToken } = require('../utils/auth');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
   Query: {
-    allPersons: () => Person.find({}),
-    personById: (_, { _id }) => Person.findById(_id),
-    allReviews: () => Review.find({}),
-    reviewById: (_, { _id }) => Review.findById(_id),
-    allMessages: () => Message.find({}),
-    messageById: (_, { _id }) => Message.findById(_id),
-    allMeals: () => Meal.find({}),
-    mealById: (_, { _id }) => Meal.findById(_id),
-    allIngredients: () => Ingredient.find({}),
-    ingredientById: (_, { _id }) => Ingredient.findById(_id),
-    allWorkouts: () => Workout.find({}),
-    workoutById: (_, { _id }) => Workout.findById(_id),
-    allExercises: () => Exercise.find({}),
-    exerciseById: (_, { _id }) => Exercise.findById(_id),
-    allConversations: () => Conversation.find({}).populate('participants lastMessage'),
-    conversationById: (_, { _id }) => Conversation.findById(_id).populate('participants lastMessage'),
-    allExerciseTypes: () => ExerciseType.find({}),
-    exerciseTypeById: (_, { _id }) => ExerciseType.findById(_id),
-    allWorkoutTypes: () => WorkoutType.find({}),
-    workoutTypeById: (_, { _id }) => WorkoutType.findById(_id),
+    allPersons: async () => Person.find({}),
+    personById: async (_, { _id }) => Person.findById(_id),
+    allReviews: async () => Review.find({}),
+    reviewById: async (_, { _id }) => Review.findById(_id),
+    allMessages: async () => Message.find({}),
+    messageById: async (_, { _id }) => Message.findById(_id),
+    allMeals: async () => Meal.find({}),
+    mealById: async (_, { _id }) => Meal.findById(_id),
+    allIngredients: async () => Ingredient.find({}),
+    ingredientById: async (_, { _id }) => Ingredient.findById(_id),
+    allWorkouts: async () => Workout.find({}),
+    workoutById: async (_, { _id }) => Workout.findById(_id),
+    allExercises: async () => Exercise.find({}),
+    exerciseById: async (_, { _id }) => Exercise.findById(_id),
+    allConversations: async () => Conversation.find({}).populate('participants lastMessage'),
+    conversationById: async (_, { _id }) => Conversation.findById(_id).populate('participants lastMessage'),
+    allExerciseTypes: async () => ExerciseType.find({}),
+    exerciseTypeById: async (_, { _id }) => ExerciseType.findById(_id),
+    allWorkoutTypes: async () => WorkoutType.find({}),
+    workoutTypeById: async (_, { _id }) => WorkoutType.findById(_id),
+    getAllResults: async () => {
+      const exercises = await Exercise.find({});
+      const workouts = await Workout.find({});
+      const ingredients = await Ingredient.find({});
+      const meals = await Meal.find({});
+      return {
+        exercises,
+        workouts,
+        ingredients,
+        meals,
+      };
+    },
   },
   Mutation: {
-    login: async (parent, { email, password }) => {
+    login: async (_, { email, password }) => {
       const person = await Person.findOne({ email });
-
       if (!person) {
         throw new AuthenticationError('Incorrect credentials');
       }
 
-      const correctPw = await person.isCorrectPassword(password);
-
+      const correctPw = await bcrypt.compare(password, person.password);
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
@@ -43,51 +54,65 @@ const resolvers = {
       return { token, person };
     },
     addPerson: async (_, { username, email, password }) => {
-      const person = new Person({ username, email, password });
-      await person.save();
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const person = await Person.create({ username, email, password: hashedPassword });
       const token = signToken(person);
       return { token, person };
     },
-    updatePerson: (_, { _id, email, password, phone, age, about, role }) => 
-      Person.findByIdAndUpdate(_id, { email, password, phone, age, about, role }, { new: true }),
-    deletePerson: (_, { _id }) => 
-      Person.findByIdAndDelete(_id).then(() => ({ success: true, message: "Person deleted successfully" })),
-    addReview: (_, { review }) => new Review(review).save(),
-    updateReview: (_, { id, review }) => 
-      Review.findByIdAndUpdate(id, review, { new: true }),
-    deleteReview: (_, { id }) => 
-      Review.findByIdAndRemove(id).then(() => ({ success: true, message: "Review deleted successfully" })),
-    sendMessage: (_, { messageInput }) => new Message(messageInput).save(),
-    updateMessage: (_, { _id, readStatus }) => 
-      Message.findByIdAndUpdate(_id, { readStatus }, { new: true }),
-    deleteMessage: (_, { _id }) => 
-      Message.findByIdAndDelete(_id).then(() => ({ success: true, message: "Message deleted successfully" })),
-    addMeal: (_, { meal }) => new Meal(meal).save(),
-    updateMeal: (_, { _id, meal }) => 
-      Meal.findByIdAndUpdate(_id, meal, { new: true }),
-    deleteMeal: (_, { _id }) => 
-      Meal.findByIdAndDelete(_id).then(() => ({ success: true, message: "Meal deleted successfully" })),
-    addIngredient: (_, { ingredient }) => new Ingredient(ingredient).save(),
-    updateIngredient: (_, { _id, ingredient }) => 
-      Ingredient.findByIdAndUpdate(_id, ingredient, { new: true }),
-    deleteIngredient: (_, { _id }) => 
-      Ingredient.findByIdAndDelete(_id).then(() => ({ success: true, message: "Ingredient deleted successfully" })),
-    createConversation: (_, { participants }) => new Conversation({ participants }).save(),
-    updateConversation: (_, { _id, lastMessage }) => 
-      Conversation.findByIdAndUpdate(_id, { lastMessage, lastUpdated: new Date() }, { new: true }),
-    deleteConversation: (_, { _id }) => 
-      Conversation.findByIdAndDelete(_id).then(() => ({ success: true, message: "Conversation deleted successfully" })),
-    addExerciseType: (_, { name }) => new ExerciseType({ name }).save(),
-    updateExerciseType: (_, { _id, name }) => 
-      ExerciseType.findByIdAndUpdate(_id, { name }, { new: true }),
-    deleteExerciseType: (_, { _id }) => 
-      ExerciseType.findByIdAndDelete(_id).then(() => ({ success: true, message: "Exercise type deleted successfully" })),
-    addWorkoutType: (_, { name }) => new WorkoutType({ name }).save(),
-    updateWorkoutType: (_, { _id, name }) => 
-      WorkoutType.findByIdAndUpdate(_id, { name }, { new: true }),
-    deleteWorkoutType: (_, { _id }) => 
-      WorkoutType.findByIdAndDelete(_id).then(() => ({ success: true, message: "Workout type deleted successfully" })),
-  }
+    updatePerson: async (_, { _id, email, password }) => {
+      const updates = { email };
+      if (password) {
+        updates.password = await bcrypt.hash(password, 10);
+      }
+      return Person.findByIdAndUpdate(_id, updates, { new: true });
+    },
+    deletePerson: async (_, { _id }) => {
+      await Person.findByIdAndDelete(_id);
+      return { success: true, message: "Person deleted successfully" };
+    },
+    addReview: async (_, { review }) => Review.create(review),
+    updateReview: async (_, { id, review }) => Review.findByIdAndUpdate(id, review, { new: true }),
+    deleteReview: async (_, { id }) => {
+      await Review.findByIdAndRemove(id);
+      return { success: true, message: "Review deleted successfully" };
+    },
+    sendMessage: async (_, { messageInput }) => Message.create(messageInput),
+    updateMessage: async (_, { _id, readStatus }) => Message.findByIdAndUpdate(_id, { readStatus }, { new: true }),
+    deleteMessage: async (_, { _id }) => {
+      await Message.findByIdAndDelete(_id);
+      return { success: true, message: "Message deleted successfully" };
+    },
+    addMeal: async (_, { meal }) => Meal.create(meal),
+    updateMeal: async (_, { _id, meal }) => Meal.findByIdAndUpdate(_id, meal, { new: true }),
+    deleteMeal: async (_, { _id }) => {
+      await Meal.findByIdAndDelete(_id);
+      return { success: true, message: "Meal deleted successfully" };
+    },
+    addIngredient: async (_, { ingredient }) => Ingredient.create(ingredient),
+    updateIngredient: async (_, { _id, ingredient }) => Ingredient.findByIdAndUpdate(_id, ingredient, { new: true }),
+    deleteIngredient: async (_, { _id }) => {
+      await Ingredient.findByIdAndDelete(_id);
+      return { success: true, message: "Ingredient deleted successfully" };
+    },
+    createConversation: async (_, { participants }) => Conversation.create({ participants }),
+    updateConversation: async (_, { _id, lastMessage }) => Conversation.findByIdAndUpdate(_id, { lastMessage, lastUpdated: new Date() }, { new: true }),
+    deleteConversation: async (_, { _id }) => {
+      await Conversation.findByIdAndDelete(_id);
+      return { success: true, message: "Conversation deleted successfully" };
+    },
+    addExerciseType: async (_, { name }) => ExerciseType.create({ name }),
+    updateExerciseType: async (_, { _id, name }) => ExerciseType.findByIdAndUpdate(_id, { name }, { new: true }),
+    deleteExerciseType: async (_, { _id }) => {
+      await ExerciseType.findByIdAndDelete(_id);
+      return { success: true, message: "Exercise type deleted successfully" };
+    },
+    addWorkoutType: async (_, { name }) => WorkoutType.create({ name }),
+    updateWorkoutType: async (_, { _id, name }) => WorkoutType.findByIdAndUpdate(_id, { name }, { new: true }),
+    deleteWorkoutType: async (_, { _id }) => {
+      await WorkoutType.findByIdAndDelete(_id);
+      return { success: true, message: "Workout type deleted successfully" };
+    },
+  },
 };
 
 module.exports = resolvers;
