@@ -27,26 +27,21 @@ const resolvers = {
   },
   Mutation: {
     login: async (parent, { email, password }) => {
-      console.log(`Attempting to log in with email: ${email}`);
       const person = await Person.findOne({ email });
-
+    
       if (!person) {
-        console.log('No user found with this email');
         throw new AuthenticationError('Incorrect credentials');
       }
-
+    
       const correctPw = await person.isCorrectPassword(password);
-      console.log(`Password match result: ${correctPw}`);
-
+    
       if (!correctPw) {
-        console.log('Password incorrect');
         throw new AuthenticationError('Incorrect credentials');
       }
-
+    
       const token = signToken(person);
-      console.log(`Token generated: ${token}`);
       return { token, person };
-    },
+    },    
     addPerson: async (_, { username, email, password }) => {
       const person = new Person({ username, email, password });
       await person.save();
