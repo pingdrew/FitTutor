@@ -1,6 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_EXERCISES, GET_ALL_WORKOUTS, GET_ALL_INGREDIENTS, GET_ALL_MEALS } from '../../utils/queries';
+import { GET_ALL_EXERCISES } from '../../utils/queries';
+import { GET_ALL_WORKOUTS } from '../../utils/queries';
+import { GET_ALL_INGREDIENTS } from '../../utils/queries';
+import { GET_ALL_MEALS } from '../../utils/queries';
 
 const Results = ({ searchTerm, filterType, activeType }) => {
   const { loading: loadingExercises, data: exerciseData, error: exerciseError } = useQuery(GET_ALL_EXERCISES, { skip: activeType !== 'exercise' });

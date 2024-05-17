@@ -40,7 +40,7 @@ const typeDefs = gql`
     reviewedItem_Id: ID!
     onModel: String!
     messageContent: String
-    timeStamp: Date!
+    timeStamp: Date
     rating: Float
   }
 
@@ -170,13 +170,6 @@ const typeDefs = gql`
     message: String!
   }
 
-  type AllResults {
-    exercises: [Exercise]
-    workouts: [Workout]
-    ingredients: [Ingredient]
-    meals: [Meal]
-  }
-
   type Query {
     allPersons: [Person]
     personById(_id: ID!): Person
@@ -198,7 +191,6 @@ const typeDefs = gql`
     exerciseTypeById(_id: ID!): ExerciseType
     allWorkoutTypes: [WorkoutType]
     workoutTypeById(_id: ID!): WorkoutType  
-    getAllResults: AllResults
   }
 
   type Mutation {

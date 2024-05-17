@@ -41,7 +41,5 @@ class AuthService {
     window.location.assign('/');
   }
 }
-
 const authServiceInstance = new AuthService();
-
 export default authServiceInstance;

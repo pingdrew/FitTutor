@@ -5,6 +5,9 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
+    "watch": "concurrently \"npm run watch-server\" \"npm run watch-client\"",
+    "watch-server": "nodemon server/server.js",
+    "watch-client": "cd client && npm start",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
@@ -14,13 +17,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.3.0",
+    "nodemon": "^3.1.0"
   },
   "dependencies": {
     "@apollo/client": "^3.10.1",
     "apollo-server": "^3.13.0",
     "apollo-server-express": "^3.13.0",
-    "bcrypt": "^5.1.1",
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "graphql": "^16.8.1",

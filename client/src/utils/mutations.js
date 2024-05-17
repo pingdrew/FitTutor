@@ -226,53 +226,6 @@ export const DELETE_EXERCISE = gql`
     }
   }
 `;
-export const GET_ALL_EXERCISE_TYPES = gql`
-  query GetAllExerciseTypes {
-    allExerciseTypes {
-      _id
-      name
-    }
-  }
-`;
-
-export const GET_EXERCISE_TYPE_BY_ID = gql`
-  query GetExerciseTypeById($_id: ID!) {
-    exerciseTypeById(_id: $_id) {
-      _id
-      name
-    }
-  }
-`;
-
-export const GET_ALL_INGREDIENTS = gql`
-  query GetAllIngredients {
-    allIngredients {
-      _id
-      name
-      description
-      calories
-      nutrients {
-        name
-        amount
-      }
-    }
-  }
-`;
-
-export const GET_INGREDIENT_BY_ID = gql`
-  query GetIngredientById($_id: ID!) {
-    ingredientById(_id: $_id) {
-      _id
-      name
-      description
-      calories
-      nutrients {
-        name
-        amount
-      }
-    }
-  }
-`;
 
 // Adding missing mutations for Ingredients and ExerciseTypes
 export const ADD_EXERCISE_TYPE = gql`
