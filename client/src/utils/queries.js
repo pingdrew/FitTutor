@@ -48,14 +48,12 @@ export const GET_ALL_REVIEWS = gql`
       messageContent
       timeStamp
       rating
-      sender_Id {
+      reviewer {
         _id
         username
       }
-      receiver_Id {
-        _id
-        username
-      }
+      reviewedItem_Id
+      onModel
     }
   }
 `;
@@ -68,11 +66,11 @@ export const GET_ALL_MESSAGES = gql`
       timeStamp
       readStatus
       attachments
-      sender_Id {
+      sender {
         _id
         username
       }
-      receiver_Id {
+      receiver {
         _id
         username
       }
@@ -116,10 +114,6 @@ export const GET_ALL_MEALS = gql`
       fats
       fibers
       sugars
-      reviews {
-        messageContent
-        rating
-      }
     }
   }
 `;
@@ -129,20 +123,17 @@ export const GET_ALL_WORKOUTS = gql`
     allWorkouts {
       _id
       name
-      description
       duration
       intensityLevel
       targetAudience
       workoutType {
-        name
-      }
-      exercises {
         _id
         name
       }
-      reviews {
-        messageContent
-        rating
+      description
+      exercises {
+        _id
+        name
       }
     }
   }
@@ -153,19 +144,16 @@ export const GET_ALL_EXERCISES = gql`
     allExercises {
       _id
       name
-      description
-      photo
-      video
       type {
+        _id
         name
       }
       targetedMuscles
       equipmentNeeded
+      description
       difficultyLevel
-      reviews {
-        messageContent
-        rating
-      }
+      photo
+      video
     }
   }
 `;
@@ -180,8 +168,8 @@ export const GET_ALL_EXERCISE_TYPES = gql`
 `;
 
 export const GET_EXERCISE_TYPE_BY_ID = gql`
-  query GetExerciseTypeById($_id: ID!) {
-    exerciseTypeById(_id: $_id) {
+  query GetExerciseTypeById($id: ID!) {
+    exerciseTypeById(_id: $id) {
       _id
       name
     }
@@ -203,17 +191,13 @@ export const GET_ALL_INGREDIENTS = gql`
       sugars
       vitamins
       minerals
-      reviews {
-        messageContent
-        rating
-      }
     }
   }
 `;
 
 export const GET_INGREDIENT_BY_ID = gql`
-  query GetAllIngredients {
-    allIngredients {
+  query GetIngredientById($id: ID!) {
+    ingredientById(_id: $id) {
       _id
       ingredientName
       unit
@@ -226,32 +210,33 @@ export const GET_INGREDIENT_BY_ID = gql`
       sugars
       vitamins
       minerals
-      reviews {
-        messageContent
-        rating
-      }
     }
   }
 `;
 
-// Meal Queries
 export const GET_MEAL_BY_ID = gql`
-  query GetMealById($_id: ID!) {
-    mealById(_id: $_id) {
+  query GetMealById($id: ID!) {
+    mealById(_id: $id) {
       _id
       name
+      description
       ingredients {
         _id
-        name
+        ingredientName
       }
+      calories
+      proteins
+      carbohydrates
+      fats
+      fibers
+      sugars
     }
   }
 `;
 
-// Message Queries
 export const GET_MESSAGE_BY_ID = gql`
-  query GetMessageById($_id: ID!) {
-    messageById(_id: $_id) {
+  query GetMessageById($id: ID!) {
+    messageById(_id: $id) {
       _id
       messageContent
       timeStamp
@@ -261,10 +246,9 @@ export const GET_MESSAGE_BY_ID = gql`
   }
 `;
 
-// Person Queries
 export const GET_PERSON_BY_ID = gql`
-  query GetPersonById($_id: ID!) {
-    personById(_id: $_id) {
+  query GetPersonById($id: ID!) {
+    personById(_id: $id) {
       _id
       username
       email
@@ -272,15 +256,22 @@ export const GET_PERSON_BY_ID = gql`
       age
       about
       role
+      specializations
+      certifications
     }
   }
 `;
 
-// Review Queries
 export const GET_REVIEW_BY_ID = gql`
-  query GetReviewById($_id: ID!) {
-    reviewById(_id: $_id) {
-      _id
+  query GetReviewById($id: ID!) {
+    reviewById(_id: $id) {
+      id
+      reviewer {
+        _id
+        username
+      }
+      reviewedItem_Id
+      onModel
       messageContent
       timeStamp
       rating
@@ -288,10 +279,9 @@ export const GET_REVIEW_BY_ID = gql`
   }
 `;
 
-// Workout Queries
 export const GET_WORKOUT_BY_ID = gql`
-  query GetWorkoutById($_id: ID!) {
-    workoutById(_id: $_id) {
+  query GetWorkoutById($id: ID!) {
+    workoutById(_id: $id) {
       _id
       name
       duration
@@ -302,11 +292,22 @@ export const GET_WORKOUT_BY_ID = gql`
         name
       }
       description
+      exercises {
+        _id
+        name
+      }
+      photo
+      video
+      reviews {
+        _id
+        messageContent
+        timeStamp
+        rating
+      }
     }
   }
 `;
 
-// WorkoutType Queries
 export const GET_ALL_WORKOUT_TYPES = gql`
   query GetAllWorkoutTypes {
     allWorkoutTypes {
@@ -317,10 +318,98 @@ export const GET_ALL_WORKOUT_TYPES = gql`
 `;
 
 export const GET_WORKOUT_TYPE_BY_ID = gql`
-  query GetWorkoutTypeById($_id: ID!) {
-    workoutTypeById(_id: $_id) {
+  query GetWorkoutTypeById($id: ID!) {
+    workoutTypeById(_id: $id) {
       _id
       name
+    }
+  }
+`;
+
+export const GET_ALL_RESULTS = gql`
+  query GetAllResults {
+    getAllResults {
+      exercises {
+        _id
+        name
+        type {
+          _id
+          name
+        }
+        targetedMuscles
+        equipmentNeeded
+        description
+        difficultyLevel
+        photo
+        video
+        reviews {
+          _id
+          messageContent
+          timeStamp
+          rating
+        }
+      }
+      workouts {
+        _id
+        name
+        duration
+        intensityLevel
+        targetAudience
+        workoutType {
+          _id
+          name
+        }
+        description
+        photo
+        video
+        reviews {
+          _id
+          messageContent
+          timeStamp
+          rating
+        }
+      }
+      ingredients {
+        _id
+        ingredientName
+        unit
+        quantity
+        calories
+        proteins
+        carbohydrates
+        fats
+        fibers
+        sugars
+        vitamins
+        minerals
+        reviews {
+          _id
+          messageContent
+          timeStamp
+          rating
+        }
+      }
+      meals {
+        _id
+        name
+        description
+        ingredients {
+          _id
+          ingredientName
+        }
+        calories
+        proteins
+        carbohydrates
+        fats
+        fibers
+        sugars
+        reviews {
+          _id
+          messageContent
+          timeStamp
+          rating
+        }
+      }
     }
   }
 `;
