@@ -16,7 +16,9 @@ const resolvers = {
     ingredientById: (_, { _id }) => Ingredient.findById(_id),
     allWorkouts: () => Workout.find({}),
     workoutById: (_, { _id }) => Workout.findById(_id),
-    allExercises: () => Exercise.find({}),
+    allExercises: async () => {const exercises = await Exercise.find().populate('type');
+        return exercises;
+    },
     exerciseById: (_, { _id }) => Exercise.findById(_id),
     allConversations: () => Conversation.find({}).populate('participants lastMessage'),
     conversationById: (_, { _id }) => Conversation.findById(_id).populate('participants lastMessage'),
