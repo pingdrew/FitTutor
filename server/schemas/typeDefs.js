@@ -7,19 +7,17 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
-    password: String!
     phone: String
     age: Int
     about: String
     role: String
     specializations: [String]
     certifications: [String]
+    friends: [Person]
     reviews: [Review]
     conversations: [Conversation]
-    favorites: [Exercise]
-    friends: [Person]
   }
-
+  
   type Auth {
     token: String!
     person: Person
@@ -70,12 +68,11 @@ const typeDefs = gql`
     name: String!
     description: String
     ingredients: [Ingredient]
-    calories: Float
-    proteins: Float
-    carbohydrates: Float
-    fats: Float
-    fibers: Float
-    sugars: Float
+    totalCalories: Float
+    totalProteins: Float
+    totalCarbohydrates: Float
+    totalFats: Float
+    mealTime: Date
     reviews: [Review]
   }
 
@@ -83,12 +80,11 @@ const typeDefs = gql`
     name: String!
     description: String
     ingredients: [IngredientInput]
-    calories: Float
-    proteins: Float
-    carbohydrates: Float
-    fats: Float
-    fibers: Float
-    sugars: Float
+    totalCalories: Float
+    totalProteins: Float
+    totalCarbohydrates: Float
+    totalFats: Float
+    mealTime: Date
   }
 
   type Ingredient {
@@ -171,6 +167,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: Person
     allPersons: [Person]
     personById(_id: ID!): Person
     allReviews: [Review]
@@ -190,13 +187,13 @@ const typeDefs = gql`
     allExerciseTypes: [ExerciseType]
     exerciseTypeById(_id: ID!): ExerciseType
     allWorkoutTypes: [WorkoutType]
-    workoutTypeById(_id: ID!): WorkoutType  
+    workoutTypeById(_id: ID!): WorkoutType
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addPerson(username: String!, email: String!, password: String!): Auth
-    updatePerson(_id: ID!, email: String, password: String): Person
+    updatePerson(_id: ID!, email: String, password: String, phone: String, age: Int, about: String, role: String): Person
     deletePerson(_id: ID!): MutationResponse
 
     addReview(review: ReviewInput!): Review

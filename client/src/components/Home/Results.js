@@ -1,42 +1,120 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_ALL_EXERCISES } from '../../utils/queries';
+import './Results.css';
 
-const Results = () => {
-  const { loading, error, data } = useQuery(GET_ALL_EXERCISES);
-
-  // Debugging information
-  console.log('Loading:', loading);
-  console.log('Error:', error);
-  console.log('Data:', data);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) {
-    console.error('Error:', error);
-    return <div>Error loading data</div>;
-  }
-
-  const exercises = data?.allExercises || [];
+const Results = ({ activeType, data }) => {
+  const results = (() => {
+    switch (activeType) {
+      case 'exercise':
+        return data?.allExercises || [];
+      case 'workout':
+        return data?.allWorkouts || [];
+      case 'ingredient':
+        return data?.allIngredients || [];
+      case 'meal':
+        return data?.allMeals || [];
+      case 'profile':
+        return data?.me ? [data.me] : []; // Wrap in an array to handle it similarly
+      default:
+        return [];
+    }
+  })();
 
   return (
     <div className="results">
-      {exercises.length === 0 ? (
-        <div>No exercises found</div>
+      {results.length === 0 ? (
+        <div>No results found</div>
       ) : (
-        exercises.map((exercise) => (
-          <div key={exercise._id} className="result-card">
-            <h3>{exercise.name}</h3>
-            <p>{exercise.description}</p>
-            <p>Type: {exercise.type?.name}</p>
-            <p>Targeted Muscles: {exercise.targetedMuscles?.join(', ')}</p>
-            <p>Equipment Needed: {exercise.equipmentNeeded}</p>
-            <p>Difficulty Level: {exercise.difficultyLevel}</p>
-            {exercise.photo && exercise.photo.map((photo, index) => (
-              <img key={index} src={photo} alt={`Exercise ${exercise.name}`} />
-            ))}
-            {exercise.video && exercise.video.map((video, index) => (
-              <video key={index} src={video} controls />
-            ))}
+        results.map((result) => (
+          <div key={result._id} className="result-card">
+            {activeType === 'exercise' && (
+              <>
+                <img src={result.photo && result.photo[0]} alt={`Exercise ${result.name}`} />
+                <h3>{result.name}</h3>
+                <p>{result.description}</p>
+                <p>Type: {result.type?.name}</p>
+                <p>Targeted Muscles: {result.targetedMuscles?.join(', ')}</p>
+                <p>Equipment Needed: {result.equipmentNeeded}</p>
+                <p>Difficulty Level: {result.difficultyLevel}</p>
+                {result.video && result.video.map((video, index) => (
+                  <video key={index} src={video} controls />
+                ))}
+              </>
+            )}
+            {activeType === 'workout' && (
+              <>
+                <img src={result.photo && result.photo[0]} alt={`Workout ${result.name}`} />
+                <h3>{result.name}</h3>
+                <p>{result.description}</p>
+                <p>Duration: {result.duration} minutes</p>
+                <p>Intensity Level: {result.intensityLevel}</p>
+                <p>Target Audience: {result.targetAudience}</p>
+                <p>Workout Type: {result.workoutType?.name}</p>
+                <p>Exercises: {result.exercises?.map((exercise) => exercise.name).join(', ')}</p>
+                {result.video && result.video.map((video, index) => (
+                  <video key={index} src={video} controls />
+                ))}
+              </>
+            )}
+            {activeType === 'ingredient' && (
+              <>
+                <h3>{result.ingredientName}</h3>
+                <p>Quantity: {result.quantity} {result.unit}</p>
+                <p>Calories: {result.calories}</p>
+                <p>Proteins: {result.proteins}</p>
+                <p>Carbohydrates: {result.carbohydrates}</p>
+                <p>Fats: {result.fats}</p>
+                <p>Fibers: {result.fibers}</p>
+                <p>Sugars: {result.sugars}</p>
+                <p>Vitamins: {result.vitamins?.join(', ')}</p>
+                <p>Minerals: {result.minerals?.join(', ')}</p>
+              </>
+            )}
+            {activeType === 'meal' && (
+              <>
+                <img src={result.photo && result.photo[0]} alt={`Meal ${result.name}`} />
+                <h3>{result.name}</h3>
+                <p>{result.description}</p>
+                <p>Calories: {result.calories}</p>
+                <p>Proteins: {result.proteins}</p>
+                <p>Carbohydrates: {result.carbohydrates}</p>
+                <p>Fats: {result.fats}</p>
+                <p>Fibers: {result.fibers}</p>
+                <p>Sugars: {result.sugars}</p>
+                <p>Ingredients: {result.ingredients?.map((ingredient) => ingredient.ingredientName).join(', ')}</p>
+              </>
+            )}
+            {activeType === 'profile' && (
+              <>
+                <h3>{result.username}'s Profile</h3>
+                <p><strong>Email:</strong> {result.email}</p>
+                <p><strong>Phone:</strong> {result.phone}</p>
+                <p><strong>Age:</strong> {result.age}</p>
+                <p><strong>About:</strong> {result.about}</p>
+                <p><strong>Role:</strong> {result.role}</p>
+                <p><strong>Specializations:</strong> {result.specializations?.join(', ')}</p>
+                <p><strong>Certifications:</strong> {result.certifications?.join(', ')}</p>
+                <div className="friends-section">
+                  <h2>Friends</h2>
+                  <ul>
+                    {result.friends.map((friend) => (
+                      <li key={friend._id}>{friend.username} ({friend.email})</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="reviews-section">
+                  <h2>Reviews</h2>
+                  <ul>
+                    {result.reviews.map((review) => (
+                      <li key={review._id}>
+                        <p><strong>Rating:</strong> {review.rating}</p>
+                        <p>{review.messageContent}</p>
+                        <p><em>{new Date(review.timeStamp).toLocaleDateString()}</em></p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
           </div>
         ))
       )}

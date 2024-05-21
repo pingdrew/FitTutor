@@ -1,6 +1,5 @@
 const db = require('./connection');
-const { Person, Review, Message, Meal, Exercise, ExerciseType, Workout, WorkoutType, Conversation } = require('../models');
-// console.log('Meal seeding complete!');
+const { Person, Ingredient, Review, Message, Meal, Exercise, ExerciseType, Workout, WorkoutType, Conversation } = require('../models');
 
 db.once('open', async () => {
   // Delete all documents in all collections
@@ -8,6 +7,7 @@ db.once('open', async () => {
     Person.deleteMany(),
     Review.deleteMany(),
     Message.deleteMany(),
+    Ingredient.deleteMany(),
     Meal.deleteMany(),
     Exercise.deleteMany(),
     ExerciseType.deleteMany(),
@@ -36,12 +36,94 @@ db.once('open', async () => {
     { conversationId: null, sender_Id: persons[0]._id, receiver_Id: persons[1]._id, messageContent: 'Hello, Jane!', timeStamp: new Date(), readStatus: false }
   ]);
   console.log('Message seeding complete!');
-  
+
   // Sample Conversations
   const conversations = await Conversation.create([
     { participants: [persons[0]._id, persons[1]._id], lastMessage: messages[0]._id, lastUpdated: new Date() }
   ]);
   console.log('Conversation seeding complete!');
+
+  // Seed ingredients
+  const ingredients = await Ingredient.insertMany([
+    {
+      ingredientName: 'Chicken Breast',
+      unit: 'grams',
+      quantity: 100,
+      calories: 165,
+      proteins: 31,
+      carbohydrates: 0,
+      fats: 3.6,
+      fibers: 0,
+      sugars: 0,
+      vitamins: ['B6', 'B12'],
+      minerals: ['Phosphorus', 'Selenium'],
+      reviews: []
+    },
+    {
+      ingredientName: 'Broccoli',
+      unit: 'grams',
+      quantity: 100,
+      calories: 55,
+      proteins: 3.7,
+      carbohydrates: 11.1,
+      fats: 0.6,
+      fibers: 3.8,
+      sugars: 2.5,
+      vitamins: ['C', 'K'],
+      minerals: ['Iron', 'Calcium'],
+      reviews: []
+    },
+    {
+      ingredientName: 'Quinoa',
+      unit: 'grams',
+      quantity: 100,
+      calories: 120,
+      proteins: 4.1,
+      carbohydrates: 21.3,
+      fats: 1.9,
+      fibers: 2.8,
+      sugars: 0.9,
+      vitamins: ['B1', 'B2'],
+      minerals: ['Magnesium', 'Manganese'],
+      reviews: []
+    }
+  ]);
+  console.log('Ingredient seeding complete!');
+
+  // Seed meals
+  const meals = await Meal.insertMany([
+    {
+      name: 'Grilled Chicken with Quinoa and Broccoli',
+      description: 'A healthy and balanced meal featuring grilled chicken breast, quinoa, and steamed broccoli.',
+      ingredients: [ingredients[0]._id, ingredients[1]._id, ingredients[2]._id],
+      totalCalories: 340,
+      totalProteins: 38.8,
+      totalCarbohydrates: 32.4,
+      totalFats: 6.1,
+      reviews: []
+    },
+    {
+      name: 'Quinoa Salad with Vegetables',
+      description: 'A refreshing and nutritious salad made with quinoa, fresh vegetables, and a light dressing.',
+      ingredients: [ingredients[2]._id], // Add more ingredient IDs as needed
+      totalCalories: 250,
+      totalProteins: 6,
+      totalCarbohydrates: 45,
+      totalFats: 5,
+      reviews: []
+    },
+    {
+      name: 'Steamed Broccoli and Chicken',
+      description: 'A simple yet nutritious meal with steamed broccoli and chicken breast.',
+      ingredients: [ingredients[0]._id, ingredients[1]._id],
+      totalCalories: 220,
+      totalProteins: 34.7,
+      totalCarbohydrates: 11.1,
+      totalFats: 4.2,
+      reviews: []
+    }
+  ]);
+  console.log('Meal seeding complete!');
 
   // Sample Workout Types
   const workoutTypes = await WorkoutType.insertMany([
@@ -63,46 +145,46 @@ db.once('open', async () => {
   // Exercise Types
 
   const exerciseTypes = await ExerciseType.insertMany([
-    {name: "Strength Training - Free Weights"},
-    {name: "Strength Training - Machine Weights"},
-    {name: "Strength Training - Bodyweight"},
-    {name: "Strength Training - Resistance Bands"},
-    {name: "Strength Training - Isometrics"},
-    {name: "Cardiovascular - Running"},
-    {name: "Cardiovascular - Cycling"},
-    {name: "Cardiovascular - Swimming"},
-    {name: "Cardiovascular - Aerobics"},
-    {name: "Cardiovascular - Rowing"},
-    {name: "Flexibility - Stretching"},
-    {name: "Flexibility - Yoga"},
-    {name: "Flexibility - Pilates"},
-    {name: "Flexibility - Dynamic Stretching"},
-    {name: "Flexibility - Ballistic Stretching"},
-    {name: "Balance and Stability - Core Training"},
-    {name: "Balance and Stability - Balance Boards"},
-    {name: "Balance and Stability - Pilates"},
-    {name: "Balance and Stability - Tai Chi"},
-    {name: "HIIT - Sprinting"},
-    {name: "HIIT - Tabata"},
-    {name: "HIIT - Circuit Training"},
-    {name: "Sports-Specific Training - Basketball Drills"},
-    {name: "Sports-Specific Training - Soccer Drills"},
-    {name: "Sports-Specific Training - Tennis Drills"},
-    {name: "Sports-Specific Training - Golf Swing Practice"},
-    {name: "Rehabilitative - Physical Therapy"},
-    {name: "Rehabilitative - Post-operative"},
-    {name: "Rehabilitative - Back Pain Strengthening"},
-    {name: "Rehabilitative - Joint Mobility"},
-    {name: "Dance - Ballet"},
-    {name: "Dance - Hip Hop"},
-    {name: "Dance - Contemporary"},
-    {name: "Dance - Ballroom"},
-    {name: "Functional Training - CrossFit"},
-    {name: "Functional Training - Boot Camp"},
-    {name: "Outdoor Activities - Hiking"},
-    {name: "Outdoor Activities - Rock Climbing"},
-    {name: "Outdoor Activities - Paddle Sports"},
-    {name: "Outdoor Activities - Skiing"}
+    { name: "Strength Training - Free Weights" },
+    { name: "Strength Training - Machine Weights" },
+    { name: "Strength Training - Bodyweight" },
+    { name: "Strength Training - Resistance Bands" },
+    { name: "Strength Training - Isometrics" },
+    { name: "Cardiovascular - Running" },
+    { name: "Cardiovascular - Cycling" },
+    { name: "Cardiovascular - Swimming" },
+    { name: "Cardiovascular - Aerobics" },
+    { name: "Cardiovascular - Rowing" },
+    { name: "Flexibility - Stretching" },
+    { name: "Flexibility - Yoga" },
+    { name: "Flexibility - Pilates" },
+    { name: "Flexibility - Dynamic Stretching" },
+    { name: "Flexibility - Ballistic Stretching" },
+    { name: "Balance and Stability - Core Training" },
+    { name: "Balance and Stability - Balance Boards" },
+    { name: "Balance and Stability - Pilates" },
+    { name: "Balance and Stability - Tai Chi" },
+    { name: "HIIT - Sprinting" },
+    { name: "HIIT - Tabata" },
+    { name: "HIIT - Circuit Training" },
+    { name: "Sports-Specific Training - Basketball Drills" },
+    { name: "Sports-Specific Training - Soccer Drills" },
+    { name: "Sports-Specific Training - Tennis Drills" },
+    { name: "Sports-Specific Training - Golf Swing Practice" },
+    { name: "Rehabilitative - Physical Therapy" },
+    { name: "Rehabilitative - Post-operative" },
+    { name: "Rehabilitative - Back Pain Strengthening" },
+    { name: "Rehabilitative - Joint Mobility" },
+    { name: "Dance - Ballet" },
+    { name: "Dance - Hip Hop" },
+    { name: "Dance - Contemporary" },
+    { name: "Dance - Ballroom" },
+    { name: "Functional Training - CrossFit" },
+    { name: "Functional Training - Boot Camp" },
+    { name: "Outdoor Activities - Hiking" },
+    { name: "Outdoor Activities - Rock Climbing" },
+    { name: "Outdoor Activities - Paddle Sports" },
+    { name: "Outdoor Activities - Skiing" }
   ]);
 
   // Exercises
@@ -989,7 +1071,7 @@ db.once('open', async () => {
     }
   ]);
   console.log('Exercise seeding complete!');
-  
+
   console.log('Database seeded successfully!');
   process.exit(0);
 });

@@ -15,7 +15,6 @@ const personSchema = new Schema({
   certifications: [String],
   reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
   conversations: [{ type: Schema.Types.ObjectId, ref: 'Message' }],
-  favorites: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
   friends: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
 });
 
