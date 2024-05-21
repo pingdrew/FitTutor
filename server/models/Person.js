@@ -28,9 +28,11 @@ personSchema.pre('save', async function(next) {
   next();
 });
 
+
 // Method to compare the password with the hashed password
 personSchema.methods.isCorrectPassword = async function(password) {
-  return bcrypt.compare(password, this.password);
+  const result = await bcrypt.compare(password, this.password);
+  return result;
 };
 
 const Person = mongoose.model('Person', personSchema);

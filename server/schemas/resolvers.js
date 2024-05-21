@@ -16,7 +16,9 @@ const resolvers = {
     ingredientById: (_, { _id }) => Ingredient.findById(_id),
     allWorkouts: () => Workout.find({}),
     workoutById: (_, { _id }) => Workout.findById(_id),
-    allExercises: () => Exercise.find({}),
+    allExercises: async () => {const exercises = await Exercise.find().populate('type');
+        return exercises;
+    },
     exerciseById: (_, { _id }) => Exercise.findById(_id),
     allConversations: () => Conversation.find({}).populate('participants lastMessage'),
     conversationById: (_, { _id }) => Conversation.findById(_id).populate('participants lastMessage'),
@@ -27,26 +29,21 @@ const resolvers = {
   },
   Mutation: {
     login: async (parent, { email, password }) => {
-      console.log(`Attempting to log in with email: ${email}`);
       const person = await Person.findOne({ email });
-
+    
       if (!person) {
-        console.log('No user found with this email');
         throw new AuthenticationError('Incorrect credentials');
       }
-
+    
       const correctPw = await person.isCorrectPassword(password);
-      console.log(`Password match result: ${correctPw}`);
-
+    
       if (!correctPw) {
-        console.log('Password incorrect');
         throw new AuthenticationError('Incorrect credentials');
       }
-
+    
       const token = signToken(person);
-      console.log(`Token generated: ${token}`);
       return { token, person };
-    },
+    },    
     addPerson: async (_, { username, email, password }) => {
       const person = new Person({ username, email, password });
       await person.save();
