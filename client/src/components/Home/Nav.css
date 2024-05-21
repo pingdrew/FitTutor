@@ -4,18 +4,18 @@
 
 .navbar {
   height: 100vh;
-  background-color:#f0f0f0;
-  color:#f0f0f0;
+  background-color: #f0f0f0;
+  color: #333;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   overflow: hidden;
+  z-index: 1; /* Ensure the navbar is above other content */
 }
 
-
 .toggle-button {
-  padding-right: 20px;
-  background-color:#333;
+  padding: 20px;
+  background-color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,20 +28,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px;
 }
 
 .nav-item {
   text-align: center;
   padding: 20px;
   width: 100%;
+  color: #333;
+  text-decoration: none;
 }
 
 .navbar.closed {
-  width: 0%; /* Adjust this value to match the width of your navbar */
+  width: 0;
+  padding: 0;
 }
 
 .navbar.open {
-  width: 20%;
+  width: 250px;
+  padding: 20px;
 }
 
 .nav-item:hover,
@@ -54,9 +59,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .toggle-button {
-    justify-content: flex-end;
-  }
   .navbar.open {
     width: 50%;
   }
