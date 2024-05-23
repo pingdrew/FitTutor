@@ -30,11 +30,11 @@
     "graphql": "^15.5.0",
     "heroku": "^8.11.4",
     "mongodb": "^4.13.0",
-    "mongoose": "^6.13.0"
+    "mongoose": "^6.11.0"
   },
   "engines": {
     "node": ">=14.0.0",
     "mongodb": ">=4.13.0",
-    "mongoose": ">=6.13.0"
+    "mongoose": ">=6.11.0"
   }
 }
