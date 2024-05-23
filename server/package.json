@@ -19,7 +19,7 @@
     "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.13.0",
-    "mongoose": "^6.13.0"
+    "mongoose": "^6.11.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
@@ -27,6 +27,6 @@
   "engines": {
     "node": ">=14.0.0",
     "mongodb": ">=4.13.0",
-    "mongoose": ">=6.13.0"
+    "mongoose": ">=6.11.0"
   }
 }
