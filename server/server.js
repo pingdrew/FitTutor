@@ -14,6 +14,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  cache: 'bounded',
   cors: {
     origin: '*', // Adjust according to your needs, e.g., 'http://localhost:3000'
     credentials: true,
