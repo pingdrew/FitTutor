@@ -5,7 +5,6 @@ const connectionURI = process.env.MONGODB_URI || `mongodb+srv://${process.env.MO
 mongoose.connect(connectionURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  tls: true, // Use tls for secure connections instead of ssl
 });
 
 module.exports = mongoose.connection;

@@ -18,8 +18,8 @@
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^4.0.0",
-    "mongoose": "^5.12.3"
+    "mongodb": "^4.13.0",
+    "mongoose": "^6.13.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
