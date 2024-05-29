@@ -15,14 +15,24 @@ const server = new ApolloServer({
   resolvers,
   context: authMiddleware,
   cache: 'bounded',
-  cors: {
-    origin: '*', // Adjust according to your needs, e.g., 'http://localhost:3000'
-    credentials: true,
-  },
 });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Apply CORS settings
+const corsOptions = {
+  origin: '*', // Adjust according to your needs
+  credentials: true,
+};
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', corsOptions.origin);
+  res.header('Access-Control-Allow-Credentials', corsOptions.credentials);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
@@ -34,7 +44,7 @@ app.get('/*', (req, res) => {
 
 const startApolloServer = async () => {
   await server.start();
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app, cors: corsOptions });
 
   db.once('open', () => {
     app.listen(PORT, () => {
