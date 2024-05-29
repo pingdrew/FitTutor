@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
-import { ADD_PERSON } from '../../utils/mutations';
+import { SIGN_UP } from '../../utils/mutations';
 
 function Signup() {
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-  const [addPerson, { error }] = useMutation(ADD_PERSON);
+  const [addPerson, { error }] = useMutation(SIGN_UP);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -48,7 +48,7 @@ function Signup() {
           />
         </div>
         <div>
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="email">Email:</label>
           <input
             placeholder="youremail@test.com"
             name="email"
