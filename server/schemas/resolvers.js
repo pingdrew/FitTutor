@@ -1,169 +1,191 @@
-const { AuthenticationError } = require('apollo-server-express');
-const {
-  Person, Review, Message, Meal, Ingredient, Exercise, ExerciseType, Workout, WorkoutType, Conversation
-} = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
+const Person = require('../models/Person');
+const Review = require('../models/Review');
+const Message = require('../models/Message');
+const Meal = require('../models/Meal');
+const Ingredient = require('../models/Ingredient');
+const Exercise = require('../models/Exercise');
+const ExerciseType = require('../models/ExerciseType');
+const Workout = require('../models/Workout');
+const WorkoutType = require('../models/WorkoutType');
+const Conversation = require('../models/Conversation');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const resolvers = {
   Query: {
-    me: async (_, __, context) => {
-      console.log("Context:", context);
-      if (context.person) {
-        try {
-          const user = await Person.findById(context.person._id).populate('reviews conversations friends');
-          console.log("User found:", user);
-          return user;
-        } catch (error) {
-          console.error("Error fetching user:", error);
-          throw new Error("Error fetching user");
-        }
+    me: async (_, __, { req }) => {
+      if (!req.isAuth) {
+        throw new AuthenticationError('You must be logged in');
       }
-      throw new AuthenticationError('You need to be logged in!');
+      return Person.findById(req.userId);
     },
-    allPersons: async () => {
-      const persons = await Person.find().populate('reviews conversations friends');
-      return persons;
-    },
-    personById: async (_, { _id }) => {
-      const person = await Person.findById(_id).populate('reviews conversations favorites friends');
-      return person;
-    },
-    allReviews: async () => {
-      const reviews = await Review.find().populate('reviewer');
-      return reviews;
-    },
-    reviewById: async (_, { _id }) => {
-      const review = await Review.findById(_id).populate('reviewer');
-      return review;
-    },
-    allMessages: async () => {
-      const messages = await Message.find().populate('conversation sender receiver');
-      return messages;
-    },
-    messageById: async (_, { _id }) => {
-      const message = await Message.findById(_id).populate('conversation sender receiver');
-      return message;
-    },
-    allMeals: async () => {
-      const meals = await Meal.find().populate('ingredients reviews');
-      return meals;
-    },
-    mealById: async (_, { _id }) => {
-      const meal = await Meal.findById(_id).populate('ingredients reviews');
-      return meal;
-    },
-    allIngredients: async () => {
-      const ingredients = await Ingredient.find().populate('reviews');
-      return ingredients;
-    },
-    ingredientById: async (_, { _id }) => {
-      const ingredient = await Ingredient.findById(_id).populate('reviews');
-      return ingredient;
-    },
-    allWorkouts: async () => {
-      const workouts = await Workout.find().populate('exercises workoutType reviews');
-      return workouts;
-    },
-    workoutById: async (_, { _id }) => {
-      const workout = await Workout.findById(_id).populate('exercises workoutType reviews');
-      return workout;
-    },
-    allExercises: async () => {
-      const exercises = await Exercise.find().populate('type reviews');
-      return exercises;
-    },
-    exerciseById: async (_, { _id }) => {
-      const exercise = await Exercise.findById(_id).populate('type reviews');
-      return exercise;
-    },
-    allConversations: async () => {
-      const conversations = await Conversation.find().populate('participants lastMessage');
-      return conversations;
-    },
-    conversationById: async (_, { _id }) => {
-      const conversation = await Conversation.findById(_id).populate('participants lastMessage');
-      return conversation;
-    },
-    allExerciseTypes: async () => {
-      const exerciseTypes = await ExerciseType.find();
-      return exerciseTypes;
-    },
-    exerciseTypeById: async (_, { _id }) => {
-      const exerciseType = await ExerciseType.findById(_id);
-      return exerciseType;
-    },
-    allWorkoutTypes: async () => {
-      const workoutTypes = await WorkoutType.find();
-      return workoutTypes;
-    },
-    workoutTypeById: async (_, { _id }) => {
-      const workoutType = await WorkoutType.findById(_id);
-      return workoutType;
-    },
+    allPersons: async () => Person.find(),
+    personById: async (_, { _id }) => Person.findById(_id),
+    allReviews: async () => Review.find(),
+    reviewById: async (_, { _id }) => Review.findById(_id),
+    allMessages: async () => Message.find(),
+    messageById: async (_, { _id }) => Message.findById(_id),
+    allMeals: async () => Meal.find(),
+    mealById: async (_, { _id }) => Meal.findById(_id),
+    allIngredients: async () => Ingredient.find(),
+    ingredientById: async (_, { _id }) => Ingredient.findById(_id),
+    allWorkouts: async () => Workout.find(),
+    workoutById: async (_, { _id }) => Workout.findById(_id),
+    allExercises: async () => Exercise.find(),
+    exerciseById: async (_, { _id }) => Exercise.findById(_id),
+    allConversations: async () => Conversation.find(),
+    conversationById: async (_, { _id }) => Conversation.findById(_id),
+    allExerciseTypes: async () => ExerciseType.find(),
+    exerciseTypeById: async (_, { _id }) => ExerciseType.findById(_id),
+    allWorkoutTypes: async () => WorkoutType.find(),
+    workoutTypeById: async (_, { _id }) => WorkoutType.findById(_id),
   },
   Mutation: {
-    login: async (parent, { email, password }) => {
+    login: async (_, { email, password }) => {
       const person = await Person.findOne({ email });
-
       if (!person) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new UserInputError('User not found');
       }
-
-      const correctPw = await person.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+      const isPasswordValid = await bcrypt.compare(password, person.password);
+      if (!isPasswordValid) {
+        throw new AuthenticationError('Invalid password');
       }
-
-      const token = signToken(person);
+      const token = jwt.sign({ userId: person._id }, 'your_secret_key', { expiresIn: '1h' });
       return { token, person };
     },
     addPerson: async (_, { username, email, password }) => {
-      const person = new Person({ username, email, password });
-      await person.save();
-      const token = signToken(person);
-      return { token, person };
+      const existingPerson = await Person.findOne({ email });
+      if (existingPerson) {
+        throw new UserInputError('Email already registered');
+      }
+      const hashedPassword = await bcrypt.hash(password, 12);
+      const newPerson = new Person({ username, email, password: hashedPassword });
+      await newPerson.save();
+      const token = jwt.sign({ userId: newPerson._id }, 'your_secret_key', { expiresIn: '1h' });
+      return { token, person: newPerson };
     },
-    updatePerson: async (_, { _id, email, password, phone, age, about, role }) =>
-      Person.findByIdAndUpdate(_id, { email, password, phone, age, about, role }, { new: true }),
-    deletePerson: async (_, { _id }) =>
-      Person.findByIdAndDelete(_id).then(() => ({ success: true, message: 'Person deleted successfully' })),
-    addReview: async (_, { review }) => new Review(review).save(),
-    updateReview: async (_, { id, review }) =>
-      Review.findByIdAndUpdate(id, review, { new: true }),
-    deleteReview: async (_, { id }) =>
-      Review.findByIdAndRemove(id).then(() => ({ success: true, message: 'Review deleted successfully' })),
-    sendMessage: async (_, { messageInput }) => new Message(messageInput).save(),
-    updateMessage: async (_, { _id, readStatus }) =>
-      Message.findByIdAndUpdate(_id, { readStatus }, { new: true }),
-    deleteMessage: async (_, { _id }) =>
-      Message.findByIdAndDelete(_id).then(() => ({ success: true, message: 'Message deleted successfully' })),
-    addMeal: async (_, { meal }) => new Meal(meal).save(),
-    updateMeal: async (_, { _id, meal }) =>
-      Meal.findByIdAndUpdate(_id, meal, { new: true }),
-    deleteMeal: async (_, { _id }) =>
-      Meal.findByIdAndDelete(_id).then(() => ({ success: true, message: 'Meal deleted successfully' })),
-    addIngredient: async (_, { ingredient }) => new Ingredient(ingredient).save(),
-    updateIngredient: async (_, { _id, ingredient }) =>
-      Ingredient.findByIdAndUpdate(_id, ingredient, { new: true }),
-    deleteIngredient: async (_, { _id }) =>
-      Ingredient.findByIdAndDelete(_id).then(() => ({ success: true, message: 'Ingredient deleted successfully' })),
-    createConversation: async (_, { participants }) => new Conversation({ participants }).save(),
-    updateConversation: async (_, { _id, lastMessage }) =>
-      Conversation.findByIdAndUpdate(_id, { lastMessage, lastUpdated: new Date() }, { new: true }),
-    deleteConversation: async (_, { _id }) =>
-      Conversation.findByIdAndDelete(_id).then(() => ({ success: true, message: 'Conversation deleted successfully' })),
-    addExerciseType: async (_, { name }) => new ExerciseType({ name }).save(),
-    updateExerciseType: async (_, { _id, name }) =>
-      ExerciseType.findByIdAndUpdate(_id, { name }, { new: true }),
-    deleteExerciseType: async (_, { _id }) =>
-      ExerciseType.findByIdAndDelete(_id).then(() => ({ success: true, message: 'Exercise type deleted successfully' })),
-    addWorkoutType: async (_, { name }) => new WorkoutType({ name }).save(),
-    updateWorkoutType: async (_, { _id, name }) =>
-      WorkoutType.findByIdAndUpdate(_id, { name }, { new: true }),
-    deleteWorkoutType: async (_, { _id }) =>
-      WorkoutType.findByIdAndDelete(_id).then(() => ({ success: true, message: 'Workout type deleted successfully' })),
-  }
+    updatePerson: async (_, { _id, email, password, phone, age, about, role }) => {
+      const person = await Person.findById(_id);
+      if (!person) {
+        throw new UserInputError('User not found');
+      }
+      if (email) person.email = email;
+      if (password) person.password = await bcrypt.hash(password, 12);
+      if (phone) person.phone = phone;
+      if (age) person.age = age;
+      if (about) person.about = about;
+      if (role) person.role = role;
+      await person.save();
+      return person;
+    },
+    deletePerson: async (_, { _id }) => {
+      await Person.findByIdAndDelete(_id);
+      return { success: true, message: 'User deleted' };
+    },
+    addReview: async (_, { review }) => {
+      const newReview = new Review(review);
+      await newReview.save();
+      return newReview;
+    },
+    updateReview: async (_, { id, review }) => {
+      const updatedReview = await Review.findByIdAndUpdate(id, review, { new: true });
+      return updatedReview;
+    },
+    deleteReview: async (_, { id }) => {
+      await Review.findByIdAndDelete(id);
+      return { success: true, message: 'Review deleted' };
+    },
+    sendMessage: async (_, { messageInput }) => {
+      const newMessage = new Message(messageInput);
+      await newMessage.save();
+      return newMessage;
+    },
+    updateMessage: async (_, { _id, readStatus }) => {
+      const message = await Message.findById(_id);
+      if (!message) {
+        throw new UserInputError('Message not found');
+      }
+      message.readStatus = readStatus;
+      await message.save();
+      return message;
+    },
+    deleteMessage: async (_, { _id }) => {
+      await Message.findByIdAndDelete(_id);
+      return { success: true, message: 'Message deleted' };
+    },
+    addMeal: async (_, { meal }) => {
+      const newMeal = new Meal(meal);
+      await newMeal.save();
+      return newMeal;
+    },
+    updateMeal: async (_, { _id, meal }) => {
+      const updatedMeal = await Meal.findByIdAndUpdate(_id, meal, { new: true });
+      return updatedMeal;
+    },
+    deleteMeal: async (_, { _id }) => {
+      await Meal.findByIdAndDelete(_id);
+      return { success: true, message: 'Meal deleted' };
+    },
+    addIngredient: async (_, { ingredient }) => {
+      const newIngredient = new Ingredient(ingredient);
+      await newIngredient.save();
+      return newIngredient;
+    },
+    updateIngredient: async (_, { _id, ingredient }) => {
+      const updatedIngredient = await Ingredient.findByIdAndUpdate(_id, ingredient, { new: true });
+      return updatedIngredient;
+    },
+    deleteIngredient: async (_, { _id }) => {
+      await Ingredient.findByIdAndDelete(_id);
+      return { success: true, message: 'Ingredient deleted' };
+    },
+    createConversation: async (_, { participants }) => {
+      const newConversation = new Conversation({ participants });
+      await newConversation.save();
+      return newConversation;
+    },
+    updateConversation: async (_, { _id, lastMessage }) => {
+      const conversation = await Conversation.findById(_id);
+      if (!conversation) {
+        throw new UserInputError('Conversation not found');
+      }
+      conversation.lastMessage = lastMessage;
+      conversation.lastUpdated = Date.now();
+      await conversation.save();
+      return conversation;
+    },
+    deleteConversation: async (_, { _id }) => {
+      await Conversation.findByIdAndDelete(_id);
+      return { success: true, message: 'Conversation deleted' };
+    },
+    addExerciseType: async (_, { name }) => {
+      const newExerciseType = new ExerciseType({ name });
+      await newExerciseType.save();
+      return newExerciseType;
+    },
+    updateExerciseType: async (_, { _id, name }) => {
+      const updatedExerciseType = await ExerciseType.findByIdAndUpdate(_id, { name }, { new: true });
+      return updatedExerciseType;
+    },
+    deleteExerciseType: async (_, { _id }) => {
+      await ExerciseType.findByIdAndDelete(_id);
+      return { success: true, message: 'Exercise type deleted' };
+    },
+    addWorkoutType: async (_, { name }) => {
+      const newWorkoutType = new WorkoutType({ name });
+      await newWorkoutType.save();
+      return newWorkoutType;
+    },
+    updateWorkoutType: async (_, { _id, name }) => {
+      const updatedWorkoutType = await WorkoutType.findByIdAndUpdate(_id, { name }, { new: true });
+      return updatedWorkoutType;
+    },
+    deleteWorkoutType: async (_, { _id }) => {
+      await WorkoutType.findByIdAndDelete(_id);
+      return { success: true, message: 'Workout type deleted' };
+    },
+  },
 };
 
 module.exports = resolvers;

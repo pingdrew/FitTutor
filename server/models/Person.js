@@ -1,24 +1,21 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const { Schema } = mongoose;
-
-const personSchema = new Schema({
-  username: { type: String, required: true },
+const personSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  phone: String,
-  age: Number,
-  about: String,
-  role: String,
+  phone: { type: String },
+  age: { type: Number },
+  about: { type: String },
+  role: { type: String },
   specializations: [String],
   certifications: [String],
-  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
-  conversations: [{ type: Schema.Types.ObjectId, ref: 'Message' }],
-  friends: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
-});
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Person' }],
+  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
+  conversations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Conversation' }],
+}, { timestamps: true });
 
-// Hash the password before saving the document
 personSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
@@ -27,11 +24,8 @@ personSchema.pre('save', async function(next) {
   next();
 });
 
-
-// Method to compare the password with the hashed password
 personSchema.methods.isCorrectPassword = async function(password) {
-  const result = await bcrypt.compare(password, this.password);
-  return result;
+  return bcrypt.compare(password, this.password);
 };
 
 const Person = mongoose.model('Person', personSchema);

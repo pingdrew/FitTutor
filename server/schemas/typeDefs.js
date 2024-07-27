@@ -7,6 +7,7 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
+    password: String!
     phone: String
     age: Int
     about: String
@@ -17,7 +18,7 @@ const typeDefs = gql`
     reviews: [Review]
     conversations: [Conversation]
   }
-  
+
   type Auth {
     token: String!
     person: Person
@@ -193,7 +194,15 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addPerson(username: String!, email: String!, password: String!): Auth
-    updatePerson(_id: ID!, email: String, password: String, phone: String, age: Int, about: String, role: String): Person
+    updatePerson(
+      _id: ID!,
+      email: String,
+      password: String,
+      phone: String,
+      age: Int,
+      about: String,
+      role: String
+    ): Person
     deletePerson(_id: ID!): MutationResponse
 
     addReview(review: ReviewInput!): Review
@@ -210,7 +219,7 @@ const typeDefs = gql`
 
     addIngredient(ingredient: IngredientInput!): Ingredient
     updateIngredient(_id: ID!, ingredient: IngredientInput!): Ingredient
-    deleteIngredient(_id: ID!): MutationResponse  
+    deleteIngredient(_id: ID!): MutationResponse
 
     createConversation(participants: [ID!]!): Conversation
     updateConversation(_id: ID!, lastMessage: ID!): Conversation
@@ -219,10 +228,10 @@ const typeDefs = gql`
     addExerciseType(name: String!): ExerciseType
     updateExerciseType(_id: ID!, name: String!): ExerciseType
     deleteExerciseType(_id: ID!): MutationResponse
-  
+
     addWorkoutType(name: String!): WorkoutType
     updateWorkoutType(_id: ID!, name: String!): WorkoutType
-    deleteWorkoutType(_id: ID!): MutationResponse  
+    deleteWorkoutType(_id: ID!): MutationResponse
   }
 `;
 
