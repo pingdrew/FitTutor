@@ -1,39 +1,25 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Profile = () => {
-  const { loading, error, data } = useQuery(GET_ME);
+  const [user, setUser] = useState({});
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      const response = await axios.get('/api/users/profile');
+      setUser(response.data);
+    };
 
-  const { me } = data;
+    fetchUserProfile();
+  }, []);
 
   return (
     <div>
-      <h1>Profile</h1>
-      <h2>{me.username}</h2>
-      <p>Email: {me.email}</p>
-      <p>Phone: {me.phone}</p>
-      <p>Age: {me.age}</p>
-      <p>About: {me.about}</p>
-      <p>Role: {me.role}</p>
-      <p>Specializations: {me.specializations.join(', ')}</p>
-      <p>Certifications: {me.certifications.join(', ')}</p>
-      <p>Friends:</p>
-      {me.friends.map(friend => (
-        <div key={friend._id}>
-          <p>{friend.username}</p>
-        </div>
-      ))}
-      <p>Reviews:</p>
-      {me.reviews.map(review => (
-        <div key={review._id}>
-          <p>{review.messageContent}</p>
-          <p>Rating: {review.rating}</p>
-        </div>
-      ))}
+      <h1>{user.username}'s Profile</h1>
+      <img src={user.profilePicture} alt={user.username} />
+      <h2>Email: {user.email}</h2>
+      <h2>Posts:</h2>
+      {/* Render user's posts here */}
     </div>
   );
 };

@@ -1,12 +1,7 @@
-const Person = require('./Person');
-const Review = require('./Review');
+const User = require('./User');
+const Comment = require('./Comment');
 const Message = require('./Message');
-const Meal = require('./Meal');
-const Ingredient = require('./Ingredient');
-const Exercise = require('./Exercise');
-const ExerciseType = require('./ExerciseType');
-const Workout = require('./Workout');
-const WorkoutType = require('./WorkoutType');
-const Conversation = require('./Conversation');
+const Post = require('./Post');
+const Verification = require('./Verification');
 
-module.exports = { Person, Review, Message, Meal, Ingredient, Exercise, ExerciseType, Workout, WorkoutType, Conversation };
+module.exports = { User, Comment, Message, Post, Verification };
