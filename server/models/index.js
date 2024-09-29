@@ -1,8 +1,7 @@
-const Employee = require('./Employee');
-const Menu = require('./Menu');
-const Role = require('./Role');
-const Shift = require('./Shift');
-const Table = require('./Table');
-const Category = require('./Category');
+const User = require('./User');
+const Comment = require('./Comment');
+const Message = require('./Message');
+const Post = require('./Post');
+const Verification = require('./Verification');
 
-module.exports = { Employee, Shift, Menu, Role, Table, Category};
+module.exports = { User, Comment, Message, Post, Verification };

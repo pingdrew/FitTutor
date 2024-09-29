@@ -1,73 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Explore from './pages/Explore';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 
-import HomePage from './pages/Home/HomePage';
-import Login from './pages/Landing/Login';
-import Signup from './pages/Landing/Signup';
-import NoMatch from './pages/NoMatch';
-import Landing from './pages/Landing/Landing';
-// FRONT END WEBSITE ROUTES ^^
-
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
-
-function App() {
+const App = () => {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <Routes>
-
-
-          {/* FRONTEND WEBSITE ROUTES vv */}
-          <Route
-            path="/"
-            element={<Landing />}
-          />
-          <Route
-            path="/login"
-            element={<Login />}
-          />
-          <Route
-            path="/signup"
-            element={<Signup />}
-          />
-          <Route
-            path="/home"
-            element={<HomePage />}
-          />
-
-          {/* 404 ROUTE vv */}
-          <Route
-            path="*"
-            element={<NoMatch />}
-          />
-        </Routes>
-      </Router>
-    </ApolloProvider>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </Router>
   );
-}
+};
+
 
 export default App;

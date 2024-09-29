@@ -1,19 +1,17 @@
 {
-  "name": "fittutor",
+  "name": "fittutor-client",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:8080",
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.3.7",
+    "@apollo/client": "^3.10.4",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.8",
-    "@mui/material": "^5.14.8",
     "@stripe/stripe-js": "^1.3.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "graphql": "^15.4.0",
+    "graphql": "^15.5.0",
     "gsap": "^3.12.2",
     "jwt-decode": "^2.2.0",
     "react": "^17.0.2",
@@ -44,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
